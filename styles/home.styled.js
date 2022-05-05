@@ -5,9 +5,11 @@ export const HomeStyled = styled.main`
     flex-direction: row-reverse;
     justify-content: center;
     padding: 1rem;
+    /* height: 500px; */
   }
 
   .intro_box {
+    /* height: 800px; */
     background: black;
     color: white;
     width: 25%;
