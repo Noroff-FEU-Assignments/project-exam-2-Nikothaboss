@@ -16,7 +16,6 @@ const Header = () => {
   const logOut = () => {
     setAuth(null);
   };
-  console.log(open);
   return (
     <HeaderStyled>
       <div className="logo-container">

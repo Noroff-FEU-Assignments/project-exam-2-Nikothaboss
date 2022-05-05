@@ -1,6 +1,5 @@
 import { CarouselStyled } from "./carousel.styled";
 import { useState, useEffect, useRef } from "react";
-import { useResize } from "../../hooks/useResize";
 
 const images = [
   "https://a.cdn-hotels.com/gdcs/production42/d1533/9e57a08d-5f4c-44a9-b042-a183cc160a46.jpg",
@@ -9,13 +8,8 @@ const images = [
 ];
 
 const Carousel = () => {
-  const { screenWidth } = useResize();
   const divRef = useRef();
   const [timer, setTimer] = useState(0);
-
-  // useEffect(() => {
-  //   console.log(divRef.current.offsetWidth);
-  // }, [divRef, screenWidth]);
 
   const handleSlide = () => {
     setTimeout(() => {
@@ -33,8 +27,6 @@ const Carousel = () => {
   useEffect(() => {
     handleSlide();
   }, [timer]);
-
-  // console.log(divRef.current.offsetWidth);
 
   return (
     <CarouselStyled>

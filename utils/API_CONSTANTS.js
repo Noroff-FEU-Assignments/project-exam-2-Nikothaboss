@@ -1,1 +1,1 @@
-export const baseUrl = "https://whispering-lake-63827.herokuapp.com/";
+export const baseUrl = "https://whispering-lake-63827.herokuapp.com/api/";

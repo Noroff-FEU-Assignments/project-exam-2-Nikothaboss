@@ -4,8 +4,8 @@ import { device, padding } from "../../styles/styleVariables";
 export const HeaderStyled = styled.header`
   display: flex;
   justify-content: space-between;
-  padding: ${padding.desktop};
-  border-bottom: 2px solid black;
+  padding: 1rem;
+  border-bottom: 1px solid black;
   ul {
     display: flex;
     list-style: none;
