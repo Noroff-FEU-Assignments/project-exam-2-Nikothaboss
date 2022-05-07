@@ -7,9 +7,10 @@ const Featured = ({ request, test = "", title }) => {
       <div className="cards_container">
         {request.data.map((d) => {
           const data = d.attributes;
+          //   console.log(d);
           if (data.featured) {
             return (
-              <div className="card">
+              <div className="card" key={d.id}>
                 <Image
                   src={data.main_img}
                   layout="responsive"

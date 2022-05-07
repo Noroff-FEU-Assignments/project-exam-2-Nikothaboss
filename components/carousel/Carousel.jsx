@@ -1,5 +1,6 @@
 import { CarouselStyled } from "./carousel.styled";
 import { useState, useEffect, useRef } from "react";
+import { useRouter } from "next/router";
 
 const images = [
   "https://a.cdn-hotels.com/gdcs/production42/d1533/9e57a08d-5f4c-44a9-b042-a183cc160a46.jpg",
@@ -10,9 +11,13 @@ const images = [
 const Carousel = () => {
   const divRef = useRef();
   const [timer, setTimer] = useState(0);
+  const router = useRouter();
+  const [slide, setSlide] = useState(true);
+
+  let timeout;
 
   const handleSlide = () => {
-    setTimeout(() => {
+    timeout = setTimeout(() => {
       if (timer === 0) {
         setTimer(1);
       } else if (timer === 1) {
@@ -20,9 +25,20 @@ const Carousel = () => {
       } else if (timer === 2) {
         setTimer(0);
       }
-      divRef.current.scrollLeft = divRef.current.offsetWidth * timer;
-    }, 5000);
+    }, 4000);
+
+    setTimeout(() => {
+      if (slide) {
+        divRef.current.scrollLeft = divRef.current.offsetWidth * timer;
+      }
+      return;
+    }, 1000);
   };
+
+  typeof window !== "undefined" &&
+    window.addEventListener("popstate", () => {
+      setSlide(false);
+    });
 
   useEffect(() => {
     handleSlide();

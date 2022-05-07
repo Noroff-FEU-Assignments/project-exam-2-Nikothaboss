@@ -25,9 +25,9 @@ const Header = () => {
 
       <nav className="desktop_nav">
         <ul>
-          <li>Home</li>
-          <li>Hotels</li>
-          <li>Activities</li>
+          <Link href={"/"}>Home</Link>
+          <Link href={"/hotels"}>Hotels</Link>
+          <Link href={"/activities"}>Activities</Link>
           <li>
             {jwtValidation.test(auth) ? (
               <Link href="/Admin">Admin</Link>
@@ -59,7 +59,7 @@ const Header = () => {
                 <Link href="/">Home</Link>
               </li>
               <li>
-                <Link href="/Hotels">Hotels</Link>
+                <Link href="/hotels">Hotels</Link>
               </li>
               <li>
                 <Link href="/Activities">Activities</Link>

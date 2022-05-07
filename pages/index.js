@@ -11,7 +11,7 @@ export default function Home({ hotels, activities }) {
 
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       <HomeStyled>
         <div className="container">
           <Carousel />
@@ -46,7 +46,7 @@ export const getStaticProps = async () => {
   const hotels = await hotelsResponse.json();
   const activities = await activitiesResponse.json();
 
-  console.log(hotels, activities);
+  // console.log(hotels, activities);
 
   return {
     props: {

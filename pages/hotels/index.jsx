@@ -29,7 +29,7 @@ export const getStaticProps = async () => {
 
   const hotels = await hotelsResponse.json();
 
-  console.log(hotels.data);
+  // console.log(hotels.data);
 
   return {
     props: {
