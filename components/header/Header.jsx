@@ -11,6 +11,7 @@ const Header = () => {
   const [auth, setAuth] = useContext(AuthContext);
   const [open, setOpen] = useState(false);
   const toggleOpen = () => setOpen(!open);
+  const closeMenu = () => setOpen(false);
   const jwtValidation =
     /^([a-zA-Z0-9_=]+)\.([a-zA-Z0-9_=]+)\.([a-zA-Z0-9_\-\+\/=]*)/g;
   const logOut = () => {
@@ -55,16 +56,16 @@ const Header = () => {
             exit={{ y: "-120%" }}
           >
             <ul>
-              <li>
+              <li onClick={closeMenu}>
                 <Link href="/">Home</Link>
               </li>
-              <li>
+              <li onClick={closeMenu}>
                 <Link href="/hotels">Hotels</Link>
               </li>
-              <li>
+              <li onClick={closeMenu}>
                 <Link href="/Activities">Activities</Link>
               </li>
-              <li>
+              <li onClick={closeMenu}>
                 <Link href="auth/Login">Log in</Link>
               </li>
             </ul>

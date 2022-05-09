@@ -1,5 +1,5 @@
 import { baseUrl } from "../../utils/API_CONSTANTS";
-import { HotelsStyled } from "./hotels.styled";
+import { HotelsStyled } from "../hotels/hotels.styled";
 import Image from "next/image";
 const Hotels = ({ hotels }) => {
   return (
@@ -25,15 +25,15 @@ const Hotels = ({ hotels }) => {
 export default Hotels;
 
 export const getStaticProps = async () => {
-  const hotelsResponse = await fetch(baseUrl + "hotels");
+  const activitiesResponse = await fetch(baseUrl + "activities");
 
-  const hotels = await hotelsResponse.json();
+  const activities = await activitiesResponse.json();
 
   // console.log(hotels.data);
 
   return {
     props: {
-      hotels: hotels.data,
+      hotels: activities.data,
     },
   };
 };

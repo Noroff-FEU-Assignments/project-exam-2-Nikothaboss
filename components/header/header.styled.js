@@ -34,6 +34,8 @@ export const HeaderStyled = styled.header`
     top: 0;
     width: 100%;
     height: 100vh;
+    z-index: 9;
+    background: white;
     ul {
       display: flex;
       flex-direction: column;
