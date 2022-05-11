@@ -4,9 +4,7 @@ import { useForm } from "react-hook-form";
 import { loginSchema } from "../../utils/yupSchemas";
 import { yupResolver } from "@hookform/resolvers/yup";
 import axios from "axios";
-import Router from "next/router";
-import { axiosJWT, getRefreshToken } from "../../utils/axiosInstances";
-import { baseUrl } from "../../utils/API_CONSTANTS";
+import { useRouter } from "next/router";
 
 // https://github.com/bahdcoder/jwt-best-practices
 // https://www.youtube.com/watch?v=0hAmccuaK5Q&t=18s&ab_channel=Strapi
@@ -21,16 +19,17 @@ const Login = () => {
   });
 
   const [auth, setAuth] = useContext(AuthContext);
+  const router = useRouter();
 
   const logIn = async (formData) => {
-    const request = await axios.post(baseUrl + "api/auth/local", {
-      identifier: formData.email,
-      password: formData.password,
-    });
-    console.log(request);
-    if (request.status === 200) {
-      setAuth(request.data.jwt);
-      console.log(auth);
+    try {
+      await axios.post("/api/login", {
+        identifier: formData.email,
+        password: formData.password,
+      });
+      router.push("/");
+    } catch (err) {
+      console.log(err);
     }
   };
 

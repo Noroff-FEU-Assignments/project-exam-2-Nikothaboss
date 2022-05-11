@@ -7,7 +7,7 @@ import Link from "next/link";
 import { BsPlusLg } from "react-icons/bs";
 import { motion, AnimatePresence } from "framer-motion";
 
-const Header = () => {
+const Header = ({ user }) => {
   const [auth, setAuth] = useContext(AuthContext);
   const [open, setOpen] = useState(false);
   const toggleOpen = () => setOpen(!open);
@@ -30,13 +30,13 @@ const Header = () => {
           <Link href={"/hotels"}>Hotels</Link>
           <Link href={"/activities"}>Activities</Link>
           <li>
-            {jwtValidation.test(auth) ? (
+            {user ? (
               <Link href="/Admin">Admin</Link>
             ) : (
               <Link href="/auth/Login">Log in</Link>
             )}
           </li>
-          {jwtValidation.test(auth) && <li onClick={logOut}>Log out</li>}
+          {user && <li onClick={logOut}>Log out</li>}
         </ul>
       </nav>
       <motion.div

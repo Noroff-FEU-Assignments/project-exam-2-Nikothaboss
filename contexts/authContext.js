@@ -1,8 +1,5 @@
-import axios from "axios";
-import { createContext, useEffect } from "react";
+import { createContext } from "react";
 import { useLocalStorage } from "../hooks/useLocalStorage";
-import { axiosJWT, getRefreshToken } from "../utils/axiosInstances";
-import jwtDecode from "jwt-decode";
 
 const AuthContext = createContext([null, () => {}]);
 
