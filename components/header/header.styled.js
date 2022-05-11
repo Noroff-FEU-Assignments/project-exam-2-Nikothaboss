@@ -26,6 +26,10 @@ export const HeaderStyled = styled.header`
     @media ${device.tablet} {
       display: none;
     }
+
+    li {
+      cursor: pointer;
+    }
   }
 
   .burger_nav {

@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import AuthContext from "../../contexts/authContext";
 import { useForm } from "react-hook-form";
 import { loginSchema } from "../../utils/yupSchemas";
@@ -19,16 +19,21 @@ const Login = () => {
   });
 
   const [auth, setAuth] = useContext(AuthContext);
+  const [error, setError] = useState(false);
   const router = useRouter();
 
   const logIn = async (formData) => {
     try {
-      await axios.post("/api/login", {
+      const res = await axios.post("/api/login", {
         identifier: formData.email,
         password: formData.password,
       });
-      router.push("/");
+      if (res.status === 200) {
+        setError(false);
+        router.push("/");
+      }
     } catch (err) {
+      setError(true);
       console.log(err);
     }
   };
@@ -40,6 +45,7 @@ const Login = () => {
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
         <h2>Login</h2>
+        {error && <h3>Wrong username or password</h3>}
         <div>
           <input {...register("email")} placeholder="Email" />
           {errors.email && <span>{errors.email.message}</span>}
