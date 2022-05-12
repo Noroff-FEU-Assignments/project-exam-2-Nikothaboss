@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { HeaderStyled } from "./header.styled";
 import logo from "../../img/BB-logo.svg";
 import Image from "next/image";
@@ -8,19 +8,34 @@ import { BsPlusLg } from "react-icons/bs";
 import { motion, AnimatePresence } from "framer-motion";
 import axios from "axios";
 import { useRouter } from "next/router";
+import { baseUrl } from "../../utils/API_CONSTANTS";
 
 const Header = ({ user }) => {
   const [auth, setAuth] = useContext(AuthContext);
   const [open, setOpen] = useState(false);
+  const [wakingApi, setWakingApi] = useState(false);
 
   const toggleOpen = () => setOpen(!open);
   const closeMenu = () => setOpen(false);
 
   const router = useRouter();
-  console.log("Authcontext", auth);
+  console.log("logged in: ", auth);
 
-  // const jwtValidation =
-  //   /^([a-zA-Z0-9_=]+)\.([a-zA-Z0-9_=]+)\.([a-zA-Z0-9_\-\+\/=]*)/g;
+  // send a request to the api before it falls to sleep
+
+  useEffect(() => {
+    const wakeApi = async () => {
+      setWakingApi(true);
+      const res = await axios.get(baseUrl + "hotels");
+      if (res.status === 200) {
+        setWakingApi(false);
+      }
+    };
+    setTimeout(() => {
+      wakeApi();
+      console.log("waking up the api");
+    }, 1200000);
+  }, [wakingApi]);
 
   const logOut = async () => {
     try {

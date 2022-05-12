@@ -13,8 +13,10 @@ function MyApp({ Component, pageProps, loggedIn }) {
   // console.log("authContext: ", auth);
   return (
     <AuthProvider>
-      <Header user={loggedIn} />
-      <Component {...pageProps} />
+      <div className="app_container">
+        <Header user={loggedIn} />
+        <Component {...pageProps} />
+      </div>
     </AuthProvider>
   );
 }
@@ -24,8 +26,7 @@ export default MyApp;
 MyApp.getInitialProps = async (appContext) => {
   // calls page's `getInitialProps` and fills `appProps.pageProps`
   const appProps = await App.getInitialProps(appContext);
-  // const cookies = nookies.get(ctx);
-  // console.log(appContext.ctx.res.req.cookies.jwt);
+
   const jwt = appContext.ctx.res?.req.cookies.jwt;
 
   let loggedIn = null;
@@ -34,8 +35,6 @@ MyApp.getInitialProps = async (appContext) => {
   } else {
     loggedIn = false;
   }
-
-  // console.log(cookies);
 
   return { ...appProps, loggedIn: loggedIn };
 };
