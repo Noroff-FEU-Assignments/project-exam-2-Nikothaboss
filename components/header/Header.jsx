@@ -19,8 +19,8 @@ const Header = ({ user }) => {
   const router = useRouter();
   console.log("Authcontext", auth);
 
-  const jwtValidation =
-    /^([a-zA-Z0-9_=]+)\.([a-zA-Z0-9_=]+)\.([a-zA-Z0-9_\-\+\/=]*)/g;
+  // const jwtValidation =
+  //   /^([a-zA-Z0-9_=]+)\.([a-zA-Z0-9_=]+)\.([a-zA-Z0-9_\-\+\/=]*)/g;
 
   const logOut = async () => {
     try {
