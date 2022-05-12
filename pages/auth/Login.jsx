@@ -29,6 +29,7 @@ const Login = () => {
         password: formData.password,
       });
       if (res.status === 200) {
+        setAuth(true);
         setError(false);
         router.push("/");
       }

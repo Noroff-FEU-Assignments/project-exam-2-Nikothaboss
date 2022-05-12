@@ -7,10 +7,10 @@ import App from "next/app";
 import AuthContext from "../contexts/authContext";
 
 function MyApp({ Component, pageProps, loggedIn }) {
-  console.log("logged in: " + loggedIn);
   const [auth, setAuth] = useContext(AuthContext);
+  console.log("logged in: " + loggedIn);
   setAuth(loggedIn);
-  console.log("authContext: ", auth);
+  // console.log("authContext: ", auth);
   return (
     <AuthProvider>
       <Header user={loggedIn} />

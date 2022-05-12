@@ -17,14 +17,18 @@ const Header = ({ user }) => {
   const closeMenu = () => setOpen(false);
 
   const router = useRouter();
+  console.log("Authcontext", auth);
 
   const jwtValidation =
     /^([a-zA-Z0-9_=]+)\.([a-zA-Z0-9_=]+)\.([a-zA-Z0-9_\-\+\/=]*)/g;
 
   const logOut = async () => {
     try {
-      await axios.get("/api/logout");
-      router.push("/auth/Login");
+      const res = await axios.get("/api/logout");
+      if (res.status === 200) {
+        setAuth(false);
+        router.push("/auth/Login");
+      }
     } catch (e) {
       console.log(e);
     }
