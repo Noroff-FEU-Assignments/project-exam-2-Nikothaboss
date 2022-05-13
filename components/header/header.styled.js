@@ -4,24 +4,30 @@ import { device, padding } from "../../styles/styleVariables";
 export const HeaderStyled = styled.header`
   display: flex;
   justify-content: space-between;
-  padding: 0.5rem 1rem;
-  border-bottom: 1px solid black;
+  padding: 1rem 1rem;
+  /* border-bottom: 1px solid black; */
+  @media ${device.laptopL} {
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+      rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+  }
   ul {
     display: flex;
     list-style: none;
     width: 100%;
     justify-content: space-between;
     align-items: center;
+    padding: 0;
   }
 
   .desktop_nav {
+    font-weight: 600;
     margin: 0;
-    width: 25%;
+    width: 35%;
     @media ${device.laptopL} {
-      width: 35%;
+      width: 45%;
     }
     @media ${device.laptop} {
-      width: 40%;
+      width: 45%;
     }
     @media ${device.tablet} {
       display: none;

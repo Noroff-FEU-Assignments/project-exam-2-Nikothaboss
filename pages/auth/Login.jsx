@@ -1,15 +1,13 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import AuthContext from "../../contexts/authContext";
 import { useForm } from "react-hook-form";
 import { loginSchema } from "../../utils/yupSchemas";
 import { yupResolver } from "@hookform/resolvers/yup";
 import axios from "axios";
 import { useRouter } from "next/router";
+import nookies from "nookies";
 
-// https://github.com/bahdcoder/jwt-best-practices
-// https://www.youtube.com/watch?v=0hAmccuaK5Q&t=18s&ab_channel=Strapi
-
-const Login = () => {
+const Login = ({ loggedIn }) => {
   const {
     register,
     handleSubmit,
@@ -21,6 +19,14 @@ const Login = () => {
   const [auth, setAuth] = useContext(AuthContext);
   const [error, setError] = useState(false);
   const router = useRouter();
+
+  console.log(auth);
+
+  useEffect(() => {
+    if (loggedIn) {
+      router.push("/");
+    }
+  }, []);
 
   const logIn = async (formData) => {
     try {
@@ -68,3 +74,29 @@ const Login = () => {
 };
 
 export default Login;
+
+export const getServerSideProps = async (ctx) => {
+  const cookies = nookies.get(ctx);
+  let loggedIn;
+  console.log(cookies);
+  if (cookies?.jwt) {
+    loggedIn = true;
+  } else {
+    loggedIn = false;
+  }
+
+  if (loggedIn) {
+    return {
+      redirect: {
+        permanent: false,
+        destination: "/",
+      },
+    };
+  }
+
+  return {
+    props: {
+      loggedIn: loggedIn,
+    },
+  };
+};
