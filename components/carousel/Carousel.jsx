@@ -25,14 +25,11 @@ const Carousel = () => {
       } else if (timer === 2) {
         setTimer(0);
       }
-    }, 4000);
+    }, 5000);
 
-    setTimeout(() => {
-      if (slide) {
-        divRef.current.scrollLeft = divRef.current.offsetWidth * timer;
-      }
-      return;
-    }, 1000);
+    if (slide) {
+      divRef.current.scrollLeft = divRef.current?.offsetWidth * timer;
+    }
   };
 
   typeof window !== "undefined" &&
