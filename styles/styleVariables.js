@@ -2,7 +2,12 @@ export const colors = {
   primary: "#fff",
   secondary: "gray",
   thirdColor: "",
-  cta: "gold",
+  cta: "#be7171",
+};
+
+export const boxShadows = {
+  card: "rgba(0, 0, 0, 0.24) 0px 3px 8px;",
+  card_hover: `${colors.cta} 0px 3px 8px;`,
 };
 
 export const padding = {

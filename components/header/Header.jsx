@@ -14,12 +14,22 @@ const Header = ({ user }) => {
   const [auth, setAuth] = useContext(AuthContext);
   const [open, setOpen] = useState(false);
   const [wakingApi, setWakingApi] = useState(false);
+  console.log("user prop from header: ", user);
+  console.log("auth context from header: ", auth);
 
   const toggleOpen = () => setOpen(!open);
   const closeMenu = () => setOpen(false);
 
   const router = useRouter();
-  console.log("logged in: ", auth);
+  // update login status on header refresh
+  useEffect(() => {
+    if (user) {
+      setAuth(user);
+      setTimeout(() => {
+        console.log("authContext from header ", auth);
+      }, 100);
+    }
+  }, []);
 
   // send a request to the api before it falls to sleep
 
@@ -34,7 +44,7 @@ const Header = ({ user }) => {
     setTimeout(() => {
       wakeApi();
       console.log("waking up the api");
-    }, 1200000);
+    }, 1200000); //20 min
   }, [wakingApi]);
 
   const logOut = async () => {
@@ -63,7 +73,7 @@ const Header = ({ user }) => {
           <Link href={"/activities"}>Activities</Link>
           <li>
             {user ? (
-              <Link href="/Admin">Admin</Link>
+              <Link href="/auth/Admin">Admin</Link>
             ) : (
               <Link href="/auth/Login">Log in</Link>
             )}

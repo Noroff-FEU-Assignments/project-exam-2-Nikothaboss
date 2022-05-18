@@ -8,9 +8,9 @@ import AuthContext from "../contexts/authContext";
 
 function MyApp({ Component, pageProps, loggedIn }) {
   const [auth, setAuth] = useContext(AuthContext);
-  console.log("logged in: " + loggedIn);
-  setAuth(loggedIn);
-  // console.log("authContext: ", auth);
+  // console.log("logged in: " + loggedIn);
+  // setAuth(loggedIn);
+  // console.log("authContext from _app: ", auth);
   return (
     <AuthProvider>
       <div className="app_container">
