@@ -108,8 +108,22 @@ const Header = ({ user }) => {
                 <Link href="/Activities">Activities</Link>
               </li>
               <li onClick={closeMenu}>
-                <Link href="auth/Login">Log in</Link>
+                {user ? (
+                  <Link href="/auth/Admin">Admin</Link>
+                ) : (
+                  <Link href="/auth/Login">Log in</Link>
+                )}
               </li>
+              {user && (
+                <li
+                  onClick={() => {
+                    logOut();
+                    closeMenu();
+                  }}
+                >
+                  Log out
+                </li>
+              )}
             </ul>
           </motion.nav>
         )}
