@@ -1,9 +1,10 @@
 import axios from "axios";
+import Booking from "../../components/booking";
 import { baseUrl } from "../../utils/API_CONSTANTS";
 
 const Hotel = ({ data }) => {
   console.log(data);
-  return <div>{data.name}</div>;
+  return <Booking data={data} />;
 };
 
 export default Hotel;

@@ -11,7 +11,6 @@ const images = [
 const Carousel = () => {
   const divRef = useRef();
   const [timer, setTimer] = useState(0);
-  const router = useRouter();
   const [slide, setSlide] = useState(true);
 
   let timeout;
