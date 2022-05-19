@@ -11,6 +11,9 @@ const Hotel = ({ data, images }) => {
   const [openBooking, setOpenBooking] = useState(false);
   const toggleBooking = () => setOpenBooking(true);
   const [current, setCurrent] = useState(0);
+  const handleClick = (index) => {
+    setCurrent(index);
+  };
 
   return (
     <>
@@ -24,7 +27,30 @@ const Hotel = ({ data, images }) => {
               width="500"
               height="250"
               className="image"
+              priority
             />
+          </div>
+          <div className="img_preview">
+            {images.map((d, idx) => {
+              console.log(d);
+              return (
+                <div
+                  key={idx}
+                  className="small_img_container"
+                  onClick={() => {
+                    handleClick(idx);
+                  }}
+                >
+                  <Image
+                    src={d}
+                    layout="responsive"
+                    height="150"
+                    width="300"
+                    className="small_img"
+                  />
+                </div>
+              );
+            })}
           </div>
           <div className="info_container">
             <h2>{data.name}</h2>

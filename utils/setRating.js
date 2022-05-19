@@ -6,8 +6,8 @@ const HStack = styled.div`
   display: flex;
 `;
 
-const starColor = colors.lightBrown;
-const starSize = "1.3rem";
+const starColor = colors.cta;
+const starSize = "1.5rem";
 
 export const checkRating = (rating) => {
   switch (rating) {
