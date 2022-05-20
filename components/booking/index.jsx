@@ -5,11 +5,11 @@ import { baseUrl } from "../../utils/API_CONSTANTS";
 
 const Booking = ({ data }) => {
   const formatYmd = (date) => date.toISOString().slice(0, 10);
-  console.log(formatYmd(new Date()));
+  // console.log(formatYmd(new Date()));
   const [fromDate, setFromDate] = useState(() => formatYmd(new Date()));
   const [toDate, setToDate] = useState(() => formatYmd(new Date(Date.now())));
-  const [room, setRoom] = useState(0);
-  const [adult, setAdult] = useState(0);
+  const [room, setRoom] = useState("Standard Room");
+  const [adult, setAdult] = useState(1);
   const [children, setChildren] = useState(0);
 
   const handleSubmit = async (e) => {
@@ -28,6 +28,7 @@ const Booking = ({ data }) => {
       }
     } catch (e) {
       console.log(e, "fuck meg");
+      console.log(fromDate, toDate, room, adult, children);
     }
   };
 
@@ -39,7 +40,9 @@ const Booking = ({ data }) => {
         <input
           type="date"
           onChange={(e) => {
-            setFromDate(e.target.value);
+            console.log(fromDate);
+            setFromDate(e.target.value.toString());
+            console.log(fromDate);
           }}
           value={fromDate}
         />
@@ -49,7 +52,7 @@ const Booking = ({ data }) => {
         <input
           type="date"
           onChange={(e) => {
-            setToDate(e.target.value);
+            setToDate(e.target.value.toString());
           }}
           value={toDate}
         />
@@ -61,9 +64,9 @@ const Booking = ({ data }) => {
             setRoom(e.target.value);
           }}
         >
-          <option value={0}>Small</option>
-          <option value={1}>Medium</option>
-          <option value={2}>Large</option>
+          <option value={"Standard Room"}>Standard Room</option>
+          <option value={"Superior Room"}>Superior Room</option>
+          <option value={"Suite"}>Suite</option>
         </select>
       </div>
       <div>
