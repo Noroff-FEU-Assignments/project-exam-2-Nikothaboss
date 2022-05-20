@@ -5,21 +5,26 @@ import { useState } from "react";
 import { DetailsStyled } from "./details.styled";
 import Image from "next/image";
 import { checkRating } from "../../utils/setRating";
+import { useResize } from "../../hooks/useResize";
+import ImgPreview from "../../components/imgPreview/ImgPreview";
 
-const Hotel = ({ data, images }) => {
-  console.log(data);
+const Hotel = ({ data, images, roomData }) => {
+  console.log(roomData);
   const [openBooking, setOpenBooking] = useState(false);
   const toggleBooking = () => setOpenBooking(true);
+
   const [current, setCurrent] = useState(0);
   const handleClick = (index) => {
     setCurrent(index);
   };
 
+  const { screenWidth } = useResize();
+
   return (
     <>
       <DetailsStyled>
         <h1>{data.name}</h1>
-        <section>
+        <section className="about">
           <div className="img_container">
             <Image
               src={images[current]}
@@ -29,34 +34,40 @@ const Hotel = ({ data, images }) => {
               className="image"
               priority
             />
+            {/* {screenWidth <= 1024 && (
+              <ImgPreview images={images} handleClick={handleClick} />
+            )} */}
+            <ImgPreview images={images} handleClick={handleClick} />
           </div>
-          <div className="img_preview">
-            {images.map((d, idx) => {
-              console.log(d);
-              return (
-                <div
-                  key={idx}
-                  className="small_img_container"
-                  onClick={() => {
-                    handleClick(idx);
-                  }}
-                >
-                  <Image
-                    src={d}
-                    layout="responsive"
-                    height="150"
-                    width="300"
-                    className="small_img"
-                  />
-                </div>
-              );
-            })}
-          </div>
+
           <div className="info_container">
             <h2>{data.name}</h2>
             <p>{data.description}</p>
             {checkRating(data.rating)}
+            <div onClick={toggleBooking}>Book</div>
           </div>
+        </section>
+        <h2>Rooms</h2>
+        <section className="rooms">
+          {roomData.map((d) => {
+            const room = d.attributes;
+            return (
+              <div key={d.id} className="room">
+                <Image
+                  src={room.main_img}
+                  layout="responsive"
+                  height={"150"}
+                  width="300"
+                  className="room_img"
+                />
+                <div className="room_info">
+                  <h3>{room.name}</h3>
+                  <p>{room.description}</p>
+                  <h3>{room.price}.-</h3>
+                </div>
+              </div>
+            );
+          })}
         </section>
       </DetailsStyled>
       {openBooking && <Booking data={data} />}
@@ -68,8 +79,13 @@ export default Hotel;
 
 export const getServerSideProps = async ({ query }) => {
   const { id } = query;
-  const res = await axios.get(baseUrl + "hotels/" + id);
-  const data = res.data.data.attributes;
+
+  const [hotelResponse, roomResponse] = await Promise.all([
+    axios.get(baseUrl + "hotels/" + id),
+    axios.get(baseUrl + "Rooms"),
+  ]);
+  const data = hotelResponse.data.data.attributes;
+  const roomData = roomResponse.data.data;
   const images = [
     data.main_img,
     data.second_img,
@@ -81,6 +97,7 @@ export const getServerSideProps = async ({ query }) => {
     props: {
       data,
       images: images,
+      roomData,
     },
   };
 };

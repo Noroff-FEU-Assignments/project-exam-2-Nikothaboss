@@ -4,7 +4,7 @@ import { boxShadows, device, fonts } from "../../styles/styleVariables";
 export const DetailsStyled = styled.main`
   padding: 1rem;
   min-height: 86vh;
-  section {
+  .about {
     display: flex;
     box-shadow: ${boxShadows.card};
     @media${device.laptop} {
@@ -28,15 +28,14 @@ export const DetailsStyled = styled.main`
   .img_preview {
     display: flex;
     justify-content: space-between;
-    border: 1px solid white;
+    border-top: 2px solid white;
   }
 
   .small_img_container {
-    width: 24.5%;
+    width: 24.6%;
   }
 
   .small_img {
-    width: 25%;
     object-fit: cover;
   }
 
@@ -61,6 +60,30 @@ export const DetailsStyled = styled.main`
     p {
       font-size: 0.9rem;
       margin-bottom: 2rem;
+      font-family: ${fonts.poppins};
+    }
+  }
+
+  .rooms {
+    display: flex;
+    justify-content: space-between;
+    .room {
+      width: 33%;
+      box-shadow: ${boxShadows.card};
+    }
+
+    .room_img {
+      object-fit: cover;
+    }
+
+    .room_info {
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    p {
       font-family: ${fonts.poppins};
     }
   }
