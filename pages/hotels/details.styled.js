@@ -4,6 +4,7 @@ import { boxShadows, device, fonts } from "../../styles/styleVariables";
 export const DetailsStyled = styled.main`
   padding: 1rem;
   min-height: 86vh;
+  position: relative;
   .about {
     display: flex;
     box-shadow: ${boxShadows.card};

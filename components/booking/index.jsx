@@ -1,93 +1,120 @@
 import { BookingStyled } from "./Booking.styled";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import axios from "axios";
-import { baseUrl } from "../../utils/API_CONSTANTS";
+import { MdClose } from "react-icons/md";
 
-const Booking = ({ data }) => {
+const Booking = ({ data, closeBooking }) => {
   const formatYmd = (date) => date.toISOString().slice(0, 10);
   // console.log(formatYmd(new Date()));
-  const [fromDate, setFromDate] = useState(() => formatYmd(new Date()));
-  const [toDate, setToDate] = useState(() => formatYmd(new Date(Date.now())));
+  const [fromDate, setFromDate] = useState(null);
+  const [toDate, setToDate] = useState(null);
   const [room, setRoom] = useState("Standard Room");
   const [adult, setAdult] = useState(1);
   const [children, setChildren] = useState(0);
 
+  const [error, setError] = useState(false);
+
+  const fromDateRef = useRef();
+  const toDateRef = useRef();
+  console.log(fromDateRef);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const res = await axios.post("/api/bookRoom", {
-        hotel_name: data.name,
-        start_date: fromDate,
-        end_date: toDate,
-        room: room,
-        adult: adult,
-        children: children,
-      });
-      if (res.status === 200) {
-        console.log("IT WORK, SJEKK UT STRAPI");
+    if (fromDateRef.current.value && toDateRef.current.value) {
+      setError(false);
+      try {
+        const res = await axios.post("/api/bookRoom", {
+          hotel_name: data.name,
+          start_date: fromDate,
+          end_date: toDate,
+          room: room,
+          adult: adult,
+          children: children,
+        });
+        if (res.status === 200) {
+          console.log("IT WORK, SJEKK UT STRAPI");
+        }
+      } catch (e) {
+        console.log(e, "fuck meg");
+        console.log(fromDate, toDate, room, adult, children);
       }
-    } catch (e) {
-      console.log(e, "fuck meg");
-      console.log(fromDate, toDate, room, adult, children);
+    } else {
+      setError(true);
     }
   };
 
   return (
-    <BookingStyled onSubmit={handleSubmit}>
-      <h2>{data.name}</h2>
-      <div>
-        <label htmlFor="from">From</label>
-        <input
-          type="date"
-          onChange={(e) => {
-            console.log(fromDate);
-            setFromDate(e.target.value.toString());
-            console.log(fromDate);
-          }}
-          value={fromDate}
-        />
-      </div>
-      <div>
-        <label htmlFor="to">To</label>
-        <input
-          type="date"
-          onChange={(e) => {
-            setToDate(e.target.value.toString());
-          }}
-          value={toDate}
-        />
-      </div>
-      <div>
-        <label htmlFor="Room_Type">Room Type</label>
-        <select
-          onChange={(e) => {
-            setRoom(e.target.value);
-          }}
-        >
-          <option value={"Standard Room"}>Standard Room</option>
-          <option value={"Superior Room"}>Superior Room</option>
-          <option value={"Suite"}>Suite</option>
-        </select>
-      </div>
-      <div>
-        <label htmlFor="adults">Adults</label>
-        <input
-          type="number"
-          onChange={(e) => {
-            setAdult(e.target.value);
-          }}
-        />
-      </div>
-      <div>
-        <label htmlFor="children">Children</label>
-        <input
-          type="number"
-          onChange={(e) => {
-            setChildren(e.target.value);
-          }}
-        />
-      </div>
-      <button>Submit</button>
+    <BookingStyled
+      onSubmit={handleSubmit}
+      initial={{ y: "-120%" }}
+      animate={{ y: 0 }}
+      exit={{ y: "-120%" }}
+    >
+      <fieldset>
+        <legend>Book Hotel</legend>
+        <div className="row">
+          <h2>{data.name}</h2>
+          <MdClose size={"1.5rem"} onClick={closeBooking} />
+        </div>
+        {error && <h3>Set from and to date</h3>}
+        <div>
+          <label htmlFor="from">From</label>
+          <input
+            type="date"
+            ref={fromDateRef}
+            onChange={() => {
+              setTimeout(() => {
+                setFromDate(fromDateRef.current.value.toString());
+              }, 100);
+            }}
+            min={formatYmd(new Date())}
+          />
+        </div>
+        <div>
+          <label htmlFor="to">To</label>
+          <input
+            type="date"
+            onChange={(e) => {
+              setToDate(toDateRef.current.value);
+            }}
+            min={fromDate}
+            ref={toDateRef}
+          />
+        </div>
+        <div>
+          <label htmlFor="Room_Type">Room Type</label>
+          <select
+            onChange={(e) => {
+              setRoom(e.target.value);
+            }}
+          >
+            <option value={"Standard Room"}>Standard Room</option>
+            <option value={"Superior Room"}>Superior Room</option>
+            <option value={"Suite"}>Suite</option>
+          </select>
+        </div>
+        <div>
+          <label htmlFor="adults">Adults</label>
+          <input
+            type="number"
+            defaultValue={1}
+            onChange={(e) => {
+              setAdult(e.target.value);
+            }}
+          />
+        </div>
+        <div>
+          <label htmlFor="children">Children</label>
+          <input
+            type="number"
+            defaultValue={0}
+            onChange={(e) => {
+              setChildren(e.target.value);
+            }}
+          />
+        </div>
+        <button>Book Hotel</button>
+      </fieldset>
     </BookingStyled>
   );
 };

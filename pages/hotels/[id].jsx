@@ -7,11 +7,12 @@ import Image from "next/image";
 import { checkRating } from "../../utils/setRating";
 import { useResize } from "../../hooks/useResize";
 import ImgPreview from "../../components/imgPreview/ImgPreview";
+import { AnimatePresence } from "framer-motion";
 
 const Hotel = ({ data, images, roomData }) => {
   console.log(roomData);
   const [openBooking, setOpenBooking] = useState(false);
-  const toggleBooking = () => setOpenBooking(true);
+  const toggleBooking = () => setOpenBooking(!openBooking);
 
   const [current, setCurrent] = useState(0);
   const handleClick = (index) => {
@@ -69,8 +70,10 @@ const Hotel = ({ data, images, roomData }) => {
             );
           })}
         </section>
+        <AnimatePresence>
+          {openBooking && <Booking data={data} closeBooking={toggleBooking} />}
+        </AnimatePresence>
       </DetailsStyled>
-      {openBooking && <Booking data={data} />}
     </>
   );
 };
