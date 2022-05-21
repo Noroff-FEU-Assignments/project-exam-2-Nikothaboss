@@ -87,5 +87,14 @@ export const DetailsStyled = styled.main`
     p {
       font-family: ${fonts.poppins};
     }
+
+    @media${device.tablet} {
+      flex-direction: column;
+
+      .room {
+        width: 100%;
+        margin-bottom: 1rem;
+      }
+    }
   }
 `;

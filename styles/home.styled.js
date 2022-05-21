@@ -34,5 +34,8 @@ export const HomeStyled = styled.main`
     @media${device.tablet} {
       width: 100%;
     }
+    @media${device.mobileL} {
+      font-size: 0.9rem;
+    }
   }
 `;
