@@ -4,6 +4,7 @@ import { device, padding } from "../../styles/styleVariables";
 export const HeaderStyled = styled.header`
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 1rem 1rem;
   /* border-bottom: 1px solid black; */
   @media ${device.laptopL} {
@@ -24,7 +25,7 @@ export const HeaderStyled = styled.header`
     margin: 0;
     width: 35%;
     @media ${device.laptopL} {
-      width: 45%;
+      width: 40%;
     }
     @media ${device.laptop} {
       width: 45%;

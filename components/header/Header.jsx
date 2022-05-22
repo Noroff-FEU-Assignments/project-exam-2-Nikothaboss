@@ -6,6 +6,7 @@ import { BsPlusLg } from "react-icons/bs";
 import { motion, AnimatePresence } from "framer-motion";
 import { useRouter } from "next/router";
 import { HeaderStyled } from "./header.styled";
+import { useResize } from "../../hooks/useResize";
 import { baseUrl } from "../../utils/API_CONSTANTS";
 import logo from "../../img/BB-logo.svg";
 import AuthContext from "../../contexts/authContext";
@@ -20,6 +21,8 @@ const Header = ({ user, searchData }) => {
 
   const toggleOpen = () => setOpen(!open);
   const closeMenu = () => setOpen(false);
+
+  const { screenWidth } = useResize();
 
   const router = useRouter();
   // update login status on header refresh
@@ -64,7 +67,7 @@ const Header = ({ user, searchData }) => {
     <HeaderStyled>
       <div className="logo-container">
         <Image src={logo} />
-        <h2>Bergen Booking</h2>
+        <h2>{screenWidth > 1180 ? "Bergen Booking" : ""}</h2>
       </div>
 
       <SearchBar data={searchData} />
