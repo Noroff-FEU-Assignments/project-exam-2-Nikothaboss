@@ -2,26 +2,31 @@ import { baseUrl } from "../../utils/API_CONSTANTS";
 import { HotelsStyled } from "./hotels.styled";
 import Image from "next/image";
 import Link from "next/link";
+import SearchBar from "../../components/searchBar/searchBar";
 const Hotels = ({ hotels }) => {
   return (
-    <HotelsStyled>
-      {hotels.map((d) => {
-        const data = d.attributes;
-        return (
-          <Link href={`hotels/${d.id}`}>
-            <div className="card" key={d.id}>
-              <Image
-                src={data.main_img}
-                layout="responsive"
-                width="300"
-                height="200"
-              />
-              <h2>{data.name}</h2>
-            </div>
-          </Link>
-        );
-      })}
-    </HotelsStyled>
+    <>
+      <SearchBar data={hotels} />
+      <HotelsStyled>
+        {hotels.map((d) => {
+          const data = d.attributes;
+          return (
+            <Link href={`hotels/${d.id}`} key={d.id}>
+              <div className="card">
+                <Image
+                  src={data.main_img}
+                  layout="responsive"
+                  width="300"
+                  height="200"
+                  priority={d.id}
+                />
+                <h2>{data.name}</h2>
+              </div>
+            </Link>
+          );
+        })}
+      </HotelsStyled>
+    </>
   );
 };
 
