@@ -1,16 +1,17 @@
-import { useContext, useState, useEffect } from "react";
-import { HeaderStyled } from "./header.styled";
-import logo from "../../img/BB-logo.svg";
-import Image from "next/image";
-import AuthContext from "../../contexts/authContext";
+import axios from "axios";
 import Link from "next/link";
+import Image from "next/image";
+import { useContext, useState, useEffect } from "react";
 import { BsPlusLg } from "react-icons/bs";
 import { motion, AnimatePresence } from "framer-motion";
-import axios from "axios";
 import { useRouter } from "next/router";
+import { HeaderStyled } from "./header.styled";
 import { baseUrl } from "../../utils/API_CONSTANTS";
+import logo from "../../img/BB-logo.svg";
+import AuthContext from "../../contexts/authContext";
+import SearchBar from "../searchBar/SearchBar";
 
-const Header = ({ user }) => {
+const Header = ({ user, searchData }) => {
   const [auth, setAuth] = useContext(AuthContext);
   const [open, setOpen] = useState(false);
   const [wakingApi, setWakingApi] = useState(false);
@@ -65,6 +66,8 @@ const Header = ({ user }) => {
         <Image src={logo} />
         <h2>Bergen Booking</h2>
       </div>
+
+      <SearchBar data={searchData} />
 
       <nav className="desktop_nav">
         <ul>

@@ -1,20 +1,15 @@
+import axios from "axios";
+import App from "next/app";
 import "../styles/globals.css";
 import { AuthProvider } from "../contexts/authContext";
-import nookies from "nookies";
+import { baseUrl } from "../utils/API_CONSTANTS";
 import Header from "../components/header/Header";
-import { useContext } from "react";
-import App from "next/app";
-import AuthContext from "../contexts/authContext";
 
-function MyApp({ Component, pageProps, loggedIn }) {
-  const [auth, setAuth] = useContext(AuthContext);
-  // console.log("logged in: " + loggedIn);
-  // setAuth(loggedIn);
-  // console.log("authContext from _app: ", auth);
+function MyApp({ Component, pageProps, loggedIn, hotels }) {
   return (
     <AuthProvider>
       <div className="app_container">
-        <Header user={loggedIn} />
+        <Header user={loggedIn} searchData={hotels} />
         <Component {...pageProps} />
       </div>
     </AuthProvider>
@@ -36,5 +31,8 @@ MyApp.getInitialProps = async (appContext) => {
     loggedIn = false;
   }
 
-  return { ...appProps, loggedIn: loggedIn };
+  const res = await axios.get(baseUrl + "hotels");
+  const hotels = res.data.data;
+
+  return { ...appProps, loggedIn: loggedIn, hotels };
 };

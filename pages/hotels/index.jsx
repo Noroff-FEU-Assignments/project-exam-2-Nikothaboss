@@ -6,7 +6,6 @@ import SearchBar from "../../components/searchBar/searchBar";
 const Hotels = ({ hotels }) => {
   return (
     <>
-      <SearchBar data={hotels} />
       <HotelsStyled>
         {hotels.map((d) => {
           const data = d.attributes;
