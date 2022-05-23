@@ -19,15 +19,20 @@ export const SearchBarStyled = styled.div`
     /* height: 100%; */
   }
 
+  .img_container {
+    width: 33%;
+  }
+
   .searchImg {
     object-fit: cover;
+    width: 100%;
   }
 
   .filterResults {
     display: flex;
     flex-direction: column;
     position: absolute;
-    max-height: 500px;
+    /* max-height: 500px; */
     ::-webkit-scrollbar {
       display: none;
     }
@@ -35,5 +40,14 @@ export const SearchBarStyled = styled.div`
     overflow-y: scroll;
     background: ${colors.primary};
     z-index: 999;
+    border: 1px dotted black;
+    border-radius: 0 0 0.5rem 0.5rem;
+  }
+
+  .singleResult {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.25rem 0.5rem 0.25rem 0;
   }
 `;
