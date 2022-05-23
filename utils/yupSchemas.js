@@ -9,11 +9,22 @@ export const loginSchema = yup.object().shape({
 });
 
 export const contactSchema = yup.object().shape({
-  fName: yup.string().required("Name Required").min(2, "Minumum 2 characters"),
+  fName: yup
+    .string()
+    .required("Name Required")
+    .min(2, "Minumum 2 characters")
+    .matches(
+      /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ðæ ,.'-]+$/u,
+      "Unvalid name"
+    ),
   lName: yup
     .string()
     .required("Last name required")
-    .min(4, "Minumum 4 characters"),
+    .min(4, "Minumum 4 characters")
+    .matches(
+      /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ðæ ,.'-]+$/u,
+      "Unvalid name"
+    ),
   email: yup
     .string()
     .required("Please provide an email so we can contact you")

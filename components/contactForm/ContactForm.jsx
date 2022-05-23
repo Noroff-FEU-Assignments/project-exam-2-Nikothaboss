@@ -4,6 +4,7 @@ import { contactSchema } from "../../utils/yupSchemas";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import axios from "axios";
+import { baseUrl } from "../../utils/API_CONSTANTS";
 
 const ContactForm = () => {
   const [success, setSuccess] = useState(false);
@@ -17,12 +18,14 @@ const ContactForm = () => {
 
   const sendMessage = async (formData) => {
     try {
-      const res = await axios.post("/api/sendMessage", {
-        message: formData.message,
-        fname: formData.fname,
-        email: formData.email,
-        lname: formData.lname,
-        option: formData.option,
+      const res = await axios.post(baseUrl + "messages", {
+        data: {
+          message: formData.message,
+          fname: formData.fName,
+          email: formData.email,
+          lname: formData.lName,
+          option: formData.subject,
+        },
       });
       if (res.status === 200) {
         setSuccess(true);
@@ -69,9 +72,9 @@ const ContactForm = () => {
         <div>
           <label htmlFor="message">Message</label>
           <textarea {...register("message")} />
-          {errors.email && <span>{errors.message.message}</span>}
+          {errors.message && <span>{"Mininum 10 characters"}</span>}
         </div>
-        <button type="submit">Submit</button>
+        <button>Submit</button>
       </fieldset>
     </ContactFormStyled>
   );
