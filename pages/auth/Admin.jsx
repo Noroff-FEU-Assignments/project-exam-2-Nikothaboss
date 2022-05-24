@@ -42,22 +42,33 @@ const Admin = ({ messages, bookings }) => {
               const data = d.attributes;
               return (
                 <div className="booking">
-                  <p>{data.hotel_name}</p>
-                  <p>
-                    <strong>Check in:</strong> {data.start_date}
-                  </p>
-                  <p>
-                    <strong>Check out: </strong> {data.end_date}
-                  </p>
-                  <p>
-                    <strong>Room: </strong> {data.room}
-                  </p>
-                  <p>
-                    <strong>Adults: </strong> {data.adult}
-                  </p>
-                  <p>
-                    <strong>Children: </strong> {data.children}
-                  </p>
+                  <div className="hotel block">
+                    <p>
+                      <strong>Hotel: </strong>
+                      {data.hotel_name}
+                    </p>
+                  </div>
+                  <div className="duration block">
+                    <p>
+                      <strong>Check in:</strong> {data.start_date}
+                    </p>
+                    <p>
+                      <strong>Check out: </strong> {data.end_date}
+                    </p>
+                  </div>
+                  <div className="room block">
+                    <p>
+                      <strong>Room: </strong> {data.room}
+                    </p>
+                  </div>
+                  <div className="guests block">
+                    <p>
+                      <strong>Adults: </strong> {data.adult}
+                    </p>
+                    <p>
+                      <strong>Children: </strong> {data.children}
+                    </p>
+                  </div>
                 </div>
               );
             })}
