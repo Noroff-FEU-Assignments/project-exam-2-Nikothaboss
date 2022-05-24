@@ -1,7 +1,89 @@
 import nookies from "nookies";
+import axios from "axios";
+import { useState } from "react";
+import { baseUrl } from "../../utils/API_CONSTANTS";
+import { AdminStyled } from "../../styles/admin.styled";
 
-const Admin = () => {
-  return <div>Admin</div>;
+const Admin = ({ messages, bookings }) => {
+  const [tab, setTab] = useState(0);
+
+  return (
+    <AdminStyled>
+      <div className="tab_container">
+        <div className="tab_selector">
+          <div
+            onClick={() => setTab(0)}
+            className={tab === 0 ? "tab active" : "tab"}
+          >
+            Bookings
+          </div>
+          <div
+            onClick={() => setTab(1)}
+            className={tab === 1 ? "tab active" : "tab"}
+          >
+            Messages
+          </div>
+          <div
+            onClick={() => setTab(2)}
+            className={tab === 2 ? "tab active" : "tab"}
+          >
+            New Hotel
+          </div>
+          <div
+            onClick={() => setTab(3)}
+            className={tab === 3 ? "tab active" : "tab"}
+          >
+            Edit
+          </div>
+        </div>
+        {tab === 0 && (
+          <div className="bookings">
+            {bookings.map((d) => {
+              const data = d.attributes;
+              return (
+                <div className="booking">
+                  <p>{data.hotel_name}</p>
+                  <p>
+                    <strong>Check in:</strong> {data.start_date}
+                  </p>
+                  <p>
+                    <strong>Check out: </strong> {data.end_date}
+                  </p>
+                  <p>
+                    <strong>Room: </strong> {data.room}
+                  </p>
+                  <p>
+                    <strong>Adults: </strong> {data.adult}
+                  </p>
+                  <p>
+                    <strong>Children: </strong> {data.children}
+                  </p>
+                </div>
+              );
+            })}
+          </div>
+        )}
+        {tab === 1 && (
+          <div className="messages">
+            {messages.map((d) => {
+              const data = d.attributes;
+              return (
+                <div className="message">
+                  <div className="top">
+                    <h3>{data.fname + " " + data.lname}</h3>
+                    <h4>{data.createdAt.substring(0, 10)}</h4>
+                  </div>
+                  <p>{data.message}</p>
+                  <strong>Email: </strong>
+                  <span>{data.email}</span>
+                </div>
+              );
+            })}
+          </div>
+        )}
+      </div>
+    </AdminStyled>
+  );
 };
 
 export default Admin;
@@ -24,9 +106,19 @@ export const getServerSideProps = async (ctx) => {
     };
   }
 
+  const [messagesRes, bookingsRes] = await Promise.all([
+    axios.get(baseUrl + "messages"),
+    axios.get(baseUrl + "bookings"),
+  ]);
+
+  const messages = messagesRes.data.data;
+  const bookings = bookingsRes.data.data;
+
   return {
     props: {
       loggedIn: loggedIn,
+      messages,
+      bookings,
     },
   };
 };
