@@ -76,20 +76,24 @@ const Admin = ({ messages, bookings }) => {
         )}
         {tab === 1 && (
           <div className="messages">
-            {messages.map((d) => {
-              const data = d.attributes;
-              return (
-                <div className="message">
-                  <div className="top">
-                    <h3>{data.fname + " " + data.lname}</h3>
-                    <h4>{data.createdAt.substring(0, 10)}</h4>
+            {messages.length !== 0 ? (
+              messages.map((d) => {
+                const data = d.attributes;
+                return (
+                  <div className="message">
+                    <div className="top">
+                      <h3>{data.fname + " " + data.lname}</h3>
+                      <h4>{data.createdAt.substring(0, 10)}</h4>
+                    </div>
+                    <p>{data.message}</p>
+                    <strong>Email: </strong>
+                    <span>{data.email}</span>
                   </div>
-                  <p>{data.message}</p>
-                  <strong>Email: </strong>
-                  <span>{data.email}</span>
-                </div>
-              );
-            })}
+                );
+              })
+            ) : (
+              <h2>No Messages</h2>
+            )}
           </div>
         )}
       </div>

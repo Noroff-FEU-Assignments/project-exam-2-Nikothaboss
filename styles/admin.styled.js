@@ -82,6 +82,8 @@ export const AdminStyled = styled.main`
   .messages {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-between; 
+    min-height: 86vh;
 
     .top {
       display: flex;
@@ -90,11 +92,13 @@ export const AdminStyled = styled.main`
   }
 
   .message {
+    box-shadow: ${boxShadows.card}
     border: 1px solid black;
-    width: 50%;
-    padding: 0.5rem;
+    width: 49%;
+    padding: 1rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    margin-bottom: 1rem;
   }
 `;
