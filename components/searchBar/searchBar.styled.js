@@ -8,8 +8,11 @@ export const SearchBarStyled = styled.div`
   @media${device.tablet} {
     width: 75%;
   }
+  @media${device.mobileL} {
+    width: 50%;
+  }
   input {
-    padding: 0.5rem;
+    padding: 0.5rem 1rem;
     width: 100%;
   }
 

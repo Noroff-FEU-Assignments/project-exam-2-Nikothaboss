@@ -36,4 +36,48 @@ export const contactSchema = yup.object().shape({
     .min(10, "Minimum 10 characters required"),
 });
 
-export const bookingSchema = yup.object().shape({});
+export const createHotelSchema = yup.object().shape({
+  name: yup
+    .string()
+    .required("Please provide a hotel name")
+    .min(2, "Minimum 2 characters"),
+  description: yup
+    .string()
+    .min(10, "Minimum 10 characters")
+    .max(300, "Max 300 characters")
+    .required("Please enter a message"),
+  rating: yup
+    .number()
+    .min(1, "Minimum rating is 1")
+    .max(5, "Max rating is 5")
+    .required("Please set a rating"),
+  featured: yup.boolean().required("Required"),
+  main_img: yup
+    .string()
+    .matches(
+      /^https?:\/\/.*\/.*\.(png|gif|webp|jpeg|jpg)\??.*$/gim,
+      "Invalid image url"
+    )
+    .required("Enter an image url"),
+  second_img: yup
+    .string()
+    .matches(
+      /^https?:\/\/.*\/.*\.(png|gif|webp|jpeg|jpg)\??.*$/gim,
+      "Invalid image url"
+    )
+    .required("Enter an image url"),
+  third_img: yup
+    .string()
+    .matches(
+      /^https?:\/\/.*\/.*\.(png|gif|webp|jpeg|jpg)\??.*$/gim,
+      "Invalid image url"
+    )
+    .required("Enter an image url"),
+  fourth_img: yup
+    .string()
+    .matches(
+      /^https?:\/\/.*\/.*\.(png|gif|webp|jpeg|jpg)\??.*$/gim,
+      "Invalid image url"
+    )
+    .required("Enter an image url"),
+});

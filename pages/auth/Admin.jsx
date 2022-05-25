@@ -3,7 +3,7 @@ import axios from "axios";
 import { useState } from "react";
 import { baseUrl } from "../../utils/API_CONSTANTS";
 import { AdminStyled } from "../../styles/admin.styled";
-
+import CreateForm from "../../components/createForm/CreateForm";
 const Admin = ({ messages, bookings }) => {
   const [tab, setTab] = useState(0);
 
@@ -94,6 +94,11 @@ const Admin = ({ messages, bookings }) => {
             ) : (
               <h2>No Messages</h2>
             )}
+          </div>
+        )}
+        {tab === 2 && (
+          <div className="new_hotel">
+            <CreateForm />
           </div>
         )}
       </div>

@@ -88,6 +88,9 @@ export const AdminStyled = styled.main`
     .top {
       display: flex;
       justify-content: space-between;
+      @media${device.tablet} {
+        flex-direction: column
+      }
     }
   }
 
@@ -96,9 +99,16 @@ export const AdminStyled = styled.main`
     border: 1px solid black;
     width: 49%;
     padding: 1rem;
+    max-height: 300px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     margin-bottom: 1rem;
+    @media${device.mobileL} {
+        width: 100%;
+    }
+    @media${device.tablet}{
+        max-height: 80%;
+    }
   }
 `;
