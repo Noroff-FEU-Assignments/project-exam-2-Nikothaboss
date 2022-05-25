@@ -62,6 +62,7 @@ const CreateForm = () => {
           <label>Rating</label>
           <div className="row">
             <input
+              className="range"
               defaultValue={3}
               min={1}
               max={5}
@@ -77,7 +78,11 @@ const CreateForm = () => {
         <div>
           <div>
             <label>Featured</label>
-            <input type="checkbox" {...register("featured")} />
+            <input
+              type="checkbox"
+              {...register("featured")}
+              className="checkbox"
+            />
           </div>
           {errors.featured && <span>{errors.featured.message}</span>}
         </div>

@@ -13,6 +13,16 @@ export const CreateFormStyled = styled.form`
 
   input {
     padding: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .checkbox {
+    padding: 1rem;
+    background: red;
+  }
+
+  .range {
+    padding: 0;
   }
 
   .row {
