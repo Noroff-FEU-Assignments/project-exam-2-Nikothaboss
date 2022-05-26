@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { colors, device } from "../../styles/styleVariables";
+import { boxShadows, colors, device } from "../../styles/styleVariables";
 
 export const SearchBarStyled = styled.div`
   width: 33%;
@@ -24,6 +24,9 @@ export const SearchBarStyled = styled.div`
 
   .img_container {
     width: 33%;
+    @media${device.mobileL} {
+      width: 100%;
+    }
   }
 
   .searchImg {
@@ -51,6 +54,11 @@ export const SearchBarStyled = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.25rem 0.5rem 0.25rem 0;
+    /* padding: 0.25rem 0.5rem 0.25rem 0; */
+    box-shadow: ${boxShadows.card};
+    @media${device.mobileL} {
+      flex-direction: column;
+      padding: 0.5rem;
+    }
   }
 `;
