@@ -44,7 +44,7 @@ export const createHotelSchema = yup.object().shape({
   description: yup
     .string()
     .min(10, "Minimum 10 characters")
-    .max(300, "Max 300 characters")
+    .max(1000, "Max 1000 characters")
     .required("Please enter a message"),
   rating: yup
     .number()

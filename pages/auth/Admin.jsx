@@ -4,8 +4,25 @@ import { useState } from "react";
 import { baseUrl } from "../../utils/API_CONSTANTS";
 import { AdminStyled } from "../../styles/admin.styled";
 import CreateForm from "../../components/createForm/CreateForm";
-const Admin = ({ messages, bookings }) => {
-  const [tab, setTab] = useState(0);
+import Image from "next/image";
+import { MdClose, MdOutlineEdit } from "react-icons/md";
+
+const Admin = ({ messages, bookings, hotels }) => {
+  const [tab, setTab] = useState(3);
+  const [showHotels, setShowHotels] = useState(true);
+
+  const toggleShowHotels = () => setShowHotels(!showHotels);
+
+  const [currentHotelData, setCurrentHotelData] = useState();
+
+  const getDetails = (e) => {
+    const hotel = hotels.filter(
+      (d) => e.target.id.toString() === d.id.toString()
+    );
+    setCurrentHotelData(hotel[0]);
+    toggleShowHotels();
+    console.log(currentHotelData, "e target id: " + e.target.id);
+  };
 
   return (
     <AdminStyled>
@@ -42,7 +59,7 @@ const Admin = ({ messages, bookings }) => {
               const data = d.attributes;
               return (
                 <div className="booking">
-                  <div className="hotel block">
+                  <div className="block">
                     <p>
                       <strong>Hotel: </strong>
                       {data.hotel_name}
@@ -80,7 +97,7 @@ const Admin = ({ messages, bookings }) => {
               messages.map((d) => {
                 const data = d.attributes;
                 return (
-                  <div className="message">
+                  <div className="message" key={d.id}>
                     <div className="top">
                       <h3>{data.fname + " " + data.lname}</h3>
                       <h4>{data.createdAt.substring(0, 10)}</h4>
@@ -98,7 +115,57 @@ const Admin = ({ messages, bookings }) => {
         )}
         {tab === 2 && (
           <div className="new_hotel">
-            <CreateForm />
+            <CreateForm type={"create"} />
+          </div>
+        )}
+        {tab === 3 && (
+          <div className="edit_container">
+            {showHotels &&
+              hotels.map((d) => {
+                const data = d.attributes;
+                return (
+                  <div className="hotel" key={d.id} id={d.id}>
+                    <div className="img_container">
+                      <Image
+                        src={data.main_img}
+                        layout="responsive"
+                        width="200"
+                        height="100"
+                        className="hotel_img"
+                      />
+                    </div>
+                    <div className="name">
+                      <strong>{data.name}</strong>
+                    </div>
+
+                    <div className="rating">
+                      <p>
+                        <strong>Rating: </strong>
+                        {data.rating}
+                      </p>
+                    </div>
+                    <div className="featured">
+                      <p>
+                        <strong>Featured: </strong>
+                        {data.featured ? "Yes" : "No"}
+                      </p>
+                    </div>
+                    <button
+                      className="edit_icon"
+                      id={d.id}
+                      onClick={getDetails}
+                    >
+                      Edit
+                    </button>
+                  </div>
+                );
+              })}
+            {!showHotels && (
+              <>
+                <MdClose onClick={toggleShowHotels} />
+                <CreateForm type="edit" hotelData={currentHotelData} />
+              </>
+            )}
           </div>
         )}
       </div>
@@ -126,19 +193,23 @@ export const getServerSideProps = async (ctx) => {
     };
   }
 
-  const [messagesRes, bookingsRes] = await Promise.all([
+  const [messagesRes, bookingsRes, hotelsResponse] = await Promise.all([
     axios.get(baseUrl + "messages"),
     axios.get(baseUrl + "bookings"),
+    axios.get(baseUrl + "hotels"),
   ]);
 
   const messages = messagesRes.data.data;
   const bookings = bookingsRes.data.data;
+  const hotels = hotelsResponse.data.data;
+  console.log(hotels);
 
   return {
     props: {
       loggedIn: loggedIn,
       messages,
       bookings,
+      hotels,
     },
   };
 };

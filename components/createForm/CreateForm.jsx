@@ -6,9 +6,12 @@ import { createHotelSchema } from "../../utils/yupSchemas";
 import { useState } from "react";
 import axios from "axios";
 import { baseUrl } from "../../utils/API_CONSTANTS";
+import { useRouter } from "next/router";
 
-const CreateForm = () => {
-  const [rating, setRating] = useState(3);
+const CreateForm = ({ type, hotelData }) => {
+  const router = useRouter();
+  const [rating, setRating] = useState(hotelData?.attributes.rating || 3);
+
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
 
@@ -37,25 +40,78 @@ const CreateForm = () => {
     if (res.status === 200) {
       setSuccess(true);
       setError(false);
+
       setTimeout(() => {
         setSuccess(false);
-      }, 5000);
+        window.location.href = "/auth/Admin";
+      }, 3000);
+    }
+  };
+
+  const editHotel = async (formData) => {
+    const res = await axios.put(baseUrl + "hotels/" + hotelData.id, {
+      data: {
+        name: formData.name,
+        description: formData.description,
+        featured: formData.featured,
+        rating: formData.rating,
+        main_img: formData.main_img,
+        second_img: formData.second_img,
+        third_img: formData.third_img,
+        fourth_img: formData.fourth_img,
+      },
+    });
+
+    if (res.status === 200) {
+      setSuccess(true);
+      setError(false);
+      setTimeout(() => {
+        setSuccess(false);
+        window.location.href = "/auth/Admin";
+      }, 3000);
+    }
+  };
+
+  const deleteHotel = async () => {
+    const doDelete = window.confirm(
+      "Are you sure you want to delete this hotel?"
+    );
+    if (doDelete) {
+      const res = await axios.delete(baseUrl + "hotels/" + hotelData.id);
+
+      if (res.status === 200) {
+        setSuccess(true);
+        setError(false);
+        setTimeout(() => {
+          setSuccess(false);
+          window.location.href = "/auth/Admin";
+        }, 3000);
+      }
     }
   };
 
   const onSubmit = (formData) => {
-    createHotel(formData);
+    if (type === "create") {
+      createHotel(formData);
+    } else {
+      editHotel(formData);
+    }
   };
 
   return (
     <CreateFormStyled onSubmit={handleSubmit(onSubmit)}>
       <fieldset>
-        <legend>Add Hotel</legend>
-        {success && <h3>Hotel Created</h3>}
+        <legend>{type === "create" ? "Add Hotel" : "Edit Hotel"}</legend>
+        {success && (
+          <h3>{type === "create" ? "Hotel Created" : "Hotel Edited"}</h3>
+        )}
         {error && <h3>Unexpected error</h3>}
         <div>
           <label>Hotel Name</label>
-          <input {...register("name")} />
+          <input
+            {...register("name")}
+            defaultValue={hotelData?.attributes.name}
+          />
           {errors.name && <span>{errors.name.message}</span>}
         </div>
         <div>
@@ -63,7 +119,7 @@ const CreateForm = () => {
           <div className="row">
             <input
               className="range"
-              defaultValue={3}
+              defaultValue={hotelData?.attributes.rating || 3}
               min={1}
               max={5}
               // value={rating}
@@ -82,36 +138,60 @@ const CreateForm = () => {
               type="checkbox"
               {...register("featured")}
               className="checkbox"
+              defaultChecked={hotelData?.attributes.featured || false}
             />
           </div>
           {errors.featured && <span>{errors.featured.message}</span>}
         </div>
         <div>
           <label>Main Image</label>
-          <input {...register("main_img")} />
+          <input
+            {...register("main_img")}
+            defaultValue={hotelData?.attributes.main_img || ""}
+          />
           {errors.main_img && <span>{errors.main_img.message}</span>}
         </div>
         <div>
           <label>Second Image</label>
-          <input {...register("second_img")} />
+          <input
+            {...register("second_img")}
+            defaultValue={hotelData?.attributes.second_img || ""}
+          />
           {errors.second_img && <span>{errors.second_img.message}</span>}
         </div>
         <div>
           <label>Third Image</label>
-          <input {...register("third_img")} />
+          <input
+            {...register("third_img")}
+            defaultValue={hotelData?.attributes.third_img || ""}
+          />
           {errors.third_img && <span>{errors.third_img.message}</span>}
         </div>
         <div>
           <label>Fourth Image</label>
-          <input {...register("fourth_img")} />
+          <input
+            {...register("fourth_img")}
+            defaultValue={hotelData?.attributes.fourth_img || ""}
+          />
           {errors.fourth_img && <span>{errors.fourth_img.message}</span>}
         </div>
         <div>
           <label>Description</label>
-          <textarea rows="10" {...register("description")} />
+          <textarea
+            rows="10"
+            {...register("description")}
+            defaultValue={hotelData?.attributes.description || ""}
+          />
           {errors.description && <span>{errors.description.message}</span>}
         </div>
-        <button>Create</button>
+        <button className="submit_btn">
+          {type === "create" ? "Create" : "Edit"}
+        </button>
+        {type === "edit" && (
+          <div className="delBtn" onClick={deleteHotel}>
+            Delete
+          </div>
+        )}
       </fieldset>
     </CreateFormStyled>
   );

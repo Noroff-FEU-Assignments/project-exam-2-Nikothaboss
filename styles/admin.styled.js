@@ -24,6 +24,8 @@ export const AdminStyled = styled.main`
     }
   }
 
+  /* Bookings */
+
   .bookings {
     display: flex;
     flex-wrap: wrap;
@@ -45,9 +47,6 @@ export const AdminStyled = styled.main`
     @media${device.mobileL} {
         width: 100%;
       }
-
-    .hotel {
-    }
 
     .room {
     }
@@ -78,6 +77,8 @@ export const AdminStyled = styled.main`
       }
     }
   }
+
+  /* Messages */
 
   .messages {
     display: flex;
@@ -111,4 +112,64 @@ export const AdminStyled = styled.main`
         max-height: 80%;
     }
   }
+
+  /* Edit */
+  .edit_container{
+
+  }
+
+  .delBtn{
+          padding: .5rem;
+          background: red;
+          color: white;
+          margin-top: 1rem;
+          width: 20%;
+          text-align: center;
+          border-radius: .1rem;
+        }
+    
+        .submit_btn{
+          padding: .5rem;
+          margin-top: 1rem;
+          width: 20%;
+        }
+
+  .hotel {
+      display: flex; 
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+      box-shadow: ${boxShadows.card};
+      
+      position: relative;
+        .img_container{
+            width: 20%;
+        }
+
+        .overlay{
+          position: absolute;
+          top: 10;
+          right: 0;
+          z-index: 9999999
+        }
+
+        .edit_icon{
+            width: 10%;
+            margin-right: 1rem;
+            cursor: pointer;
+            
+        }
+
+        
+
+      .hotel_img{
+        object-fit: cover;
+        width: 100%;
+      }
+
+      .name, .rating, .featured{
+          width: 20%;
+      }
+    }
+
 `;
