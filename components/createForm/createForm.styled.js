@@ -9,7 +9,7 @@ export const CreateFormStyled = styled.form`
   fieldset {
     width: 60%;
     @media${device.tablet} {
-      width: 90%;
+      width: 100%;
     }
   }
   div {
