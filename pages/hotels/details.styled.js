@@ -15,7 +15,7 @@ export const DetailsStyled = styled.main`
   .img_container {
     /* aspect-ratio: 16/9; */
     width: 50%;
-    background: ${colors.secondary};
+    background: ${colors.primary};
     .location {
       display: flex;
       justify-content: space-between;
@@ -51,9 +51,9 @@ export const DetailsStyled = styled.main`
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    justify-content: flex-start;
+    justify-content: space-between;
     width: 50%;
-    padding: 1rem 1rem 0 1rem;
+    padding: 1rem 1rem 1rem 1rem;
 
     @media${device.laptop} {
       width: 100%;
@@ -68,6 +68,15 @@ export const DetailsStyled = styled.main`
       font-size: 0.9rem;
       margin-bottom: 2rem;
       font-family: ${fonts.poppins};
+    }
+
+    .book {
+      padding: 0.5rem 1rem;
+      background: ${colors.thirdColor};
+      border-radius: 0.1rem;
+      color: white;
+      margin-top: 1rem;
+      cursor: pointer;
     }
   }
 

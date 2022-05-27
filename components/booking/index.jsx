@@ -54,7 +54,7 @@ const Booking = ({ data, closeBooking }) => {
         <legend>Book Hotel</legend>
         <div className="row">
           <h2>{data.name}</h2>
-          <MdClose size={"1.5rem"} onClick={closeBooking} />
+          <MdClose size={"1.5rem"} cursor="pointer" onClick={closeBooking} />
         </div>
         {error && <h3>Set from and to date</h3>}
         <div>

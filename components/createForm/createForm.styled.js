@@ -4,7 +4,8 @@ import { colors, device } from "../../styles/styleVariables";
 export const CreateFormStyled = styled.form`
   display: flex;
   justify-content: center;
-  background: ${colors.secondary};
+  background: ${colors.primary};
+  padding: 1rem;
   fieldset {
     width: 60%;
     @media${device.tablet} {
@@ -50,5 +51,10 @@ export const CreateFormStyled = styled.form`
   span {
     margin-bottom: 1rem;
     color: red;
+  }
+
+  button {
+    background: ${colors.thirdColor};
+    color: white;
   }
 `;

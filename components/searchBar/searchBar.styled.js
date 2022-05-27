@@ -56,6 +56,9 @@ export const SearchBarStyled = styled.div`
     align-items: center;
     /* padding: 0.25rem 0.5rem 0.25rem 0; */
     box-shadow: ${boxShadows.card};
+    p {
+      padding-right: 0.5rem;
+    }
     @media${device.mobileL} {
       flex-direction: column;
       padding: 0.5rem;

@@ -1,11 +1,12 @@
 import styled from "styled-components";
-import { device, padding } from "../../styles/styleVariables";
+import { colors, device, padding } from "../../styles/styleVariables";
 
 export const HeaderStyled = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1rem 1rem;
+  background: ${colors.primary};
   /* border-bottom: 1px solid black; */
   @media ${device.laptopL} {
     box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
@@ -73,6 +74,9 @@ export const HeaderStyled = styled.header`
   .logo-container {
     display: flex;
     align-items: center;
+    .logo {
+      cursor: pointer;
+    }
     h2 {
       margin: 0 0 0 1rem;
     }

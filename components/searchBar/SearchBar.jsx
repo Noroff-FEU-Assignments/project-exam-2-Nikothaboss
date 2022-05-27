@@ -12,10 +12,6 @@ const SearchBar = ({ data }) => {
     d.attributes.name.toLowerCase().includes(searchWord)
   );
 
-  useEffect(() => {
-    console.log(filterData);
-  }, [searchWord]);
-
   return (
     <SearchBarStyled>
       <input

@@ -1,8 +1,8 @@
 export const colors = {
-  primary: "#fff",
-  secondary: "gray",
-  thirdColor: "",
-  cta: "#be7171",
+  primary: "#f3f3f3",
+  secondary: "#be6969",
+  thirdColor: "#228B22",
+  cta: "#b00b",
 };
 
 export const boxShadows = {

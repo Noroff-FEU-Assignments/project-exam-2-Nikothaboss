@@ -20,7 +20,7 @@ export const AdminStyled = styled.main`
     }
 
     .active {
-      border: 2px solid ${colors.cta};
+      border: 2px solid ${colors.primary};
     }
   }
 
@@ -89,6 +89,7 @@ export const AdminStyled = styled.main`
     .top {
       display: flex;
       justify-content: space-between;
+      align-items: center;
       @media${device.tablet} {
         flex-direction: column;
       }
@@ -100,11 +101,20 @@ export const AdminStyled = styled.main`
     border: 1px solid black;
     width: 49%;
     padding: 1rem;
-    max-height: 300px;
+    /* max-height: 300px; */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     margin-bottom: 1rem;
+
+    .delMsg {
+      width: 20%;
+      padding: 0.5rem;
+      background: ${colors.cta};
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
     @media${device.mobileL} {
       width: 100%;
     }

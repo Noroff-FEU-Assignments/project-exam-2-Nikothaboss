@@ -66,7 +66,9 @@ const Header = ({ user, searchData }) => {
   return (
     <HeaderStyled>
       <div className="logo-container">
-        <Image src={logo} />
+        <Link href={"/"}>
+          <Image src={logo} className="logo" />
+        </Link>
         {/* <h2>{screenWidth > 1180 ? "Bergen Booking" : ""}</h2> */}
       </div>
 

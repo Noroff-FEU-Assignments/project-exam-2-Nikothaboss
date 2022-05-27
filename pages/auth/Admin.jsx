@@ -22,7 +22,13 @@ const Admin = ({ messages, bookings, hotels }) => {
     );
     setCurrentHotelData(hotel[0]);
     toggleShowHotels();
-    console.log(currentHotelData, "e target id: " + e.target.id);
+  };
+
+  const deleteMessage = async (e) => {
+    const res = await axios.delete(baseUrl + "messages/" + e.target.id);
+    if (res.status === 200) {
+      window.location.href = "/auth/Admin";
+    }
   };
 
   return (
@@ -102,6 +108,13 @@ const Admin = ({ messages, bookings, hotels }) => {
                 const data = d.attributes;
                 return (
                   <div className="message" key={d.id}>
+                    <button
+                      id={d.id}
+                      className="delMsg"
+                      onClick={deleteMessage}
+                    >
+                      Delete
+                    </button>
                     <div className="top">
                       <h3>{data.fname + " " + data.lname}</h3>
                       <h4>{data.createdAt.substring(0, 10)}</h4>

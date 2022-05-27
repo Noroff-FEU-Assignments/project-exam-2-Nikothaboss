@@ -28,7 +28,7 @@ const Hotel = ({ data, images, roomData }) => {
         <Head>
           <title>PE2 Nikolai | {data.name}</title>
         </Head>
-        <h1>{data.name}</h1>
+        {/* <h1>{data.name}</h1> */}
         <section className="about">
           <div className="img_container">
             <Image
@@ -47,9 +47,11 @@ const Hotel = ({ data, images, roomData }) => {
 
           <div className="info_container">
             <h2>{data.name}</h2>
-            <p>{data.description}</p>
             {checkRating(data.rating)}
-            <div onClick={toggleBooking}>Book</div>
+            <p>{data.description}</p>
+            <div className="book" onClick={toggleBooking}>
+              Book
+            </div>
           </div>
         </section>
         <h2>Rooms</h2>
