@@ -20,6 +20,7 @@ const Acitvity = ({ data }) => {
             width="500"
             height="250"
             className="image"
+            alt={data.name}
           />
           <div className="location">
             <p>

@@ -20,8 +20,8 @@ export default function Home({ hotels, activities }) {
           <Carousel />
           <div className="intro_box">
             <p>
-              Welcome to Bergen Booking We'll help you experience the beauty of
-              Bergen
+              Welcome to Bergen Booking We&apos;ll help you experience the
+              beauty of Bergen
             </p>
           </div>
         </div>

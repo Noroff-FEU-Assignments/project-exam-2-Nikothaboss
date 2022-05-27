@@ -68,7 +68,7 @@ const Admin = ({ messages, bookings, hotels }) => {
             {bookings.map((d) => {
               const data = d.attributes;
               return (
-                <div className="booking">
+                <div className="booking" key={d.id}>
                   <div className="block">
                     <p>
                       <strong>Hotel: </strong>

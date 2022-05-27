@@ -13,8 +13,8 @@ const Hotels = ({ hotels }) => {
         {hotels.map((d) => {
           const data = d.attributes;
           return (
-            <Link href={`/activities/${d.id}`}>
-              <div className="card" key={d.id}>
+            <Link key={d.id} href={`/activities/${d.id}`}>
+              <div className="card">
                 <Image
                   src={data.main_img}
                   layout="responsive"
