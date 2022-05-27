@@ -17,6 +17,10 @@ export const AdminStyled = styled.main`
       background: ${colors.secondary};
       color: white;
       cursor: pointer;
+
+      @media${device.mobileL} {
+        padding: 0.25rem;
+      }
     }
 
     .active {
@@ -150,9 +154,6 @@ export const AdminStyled = styled.main`
     box-shadow: ${boxShadows.card};
 
     position: relative;
-    .img_container {
-      width: 20%;
-    }
 
     .overlay {
       position: absolute;
@@ -165,6 +166,14 @@ export const AdminStyled = styled.main`
       width: 10%;
       margin-right: 1rem;
       cursor: pointer;
+      padding: 0.5rem;
+      background: ${colors.thirdColor};
+      border: none;
+      text-align: center;
+      @media${device.mobileL} {
+        width: 15%;
+        margin-right: 0;
+      }
     }
 
     .hotel_img {
@@ -174,8 +183,37 @@ export const AdminStyled = styled.main`
 
     .name,
     .rating,
-    .featured {
+    .featured,
+    .img_container {
       width: 20%;
+
+      @media${device.tablet} {
+        width: 25%;
+      }
+      @media${device.mobileL} {
+        width: 33%;
+      }
+      @media${device.mobileS} {
+        width: 70%;
+      }
+    }
+  }
+
+  .img_container {
+    @media${device.mobileS} {
+      display: none;
+    }
+  }
+
+  .featured {
+    @media${device.tablet} {
+      display: none;
+    }
+  }
+
+  .rating {
+    @media${device.mobileL} {
+      display: none;
     }
   }
 `;

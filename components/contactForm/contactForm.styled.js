@@ -3,6 +3,8 @@ import styled from "styled-components";
 export const ContactFormStyled = styled.form`
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  min-height: 83vh;
   width: 35%;
   padding: 1rem;
   margin: auto;

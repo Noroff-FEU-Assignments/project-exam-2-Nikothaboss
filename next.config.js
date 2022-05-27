@@ -7,6 +7,7 @@ const nextConfig = {
       "a.cdn-hotels.com",
       "www.visitbergen.com",
       "gifsoutloud.com",
+      "toppng.com",
     ],
   },
 };

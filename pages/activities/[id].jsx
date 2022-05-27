@@ -25,10 +25,10 @@ const Acitvity = ({ data }) => {
             <p>
               <strong>Location:</strong> {data.location}
             </p>
-            <p>
+            <div className="price">
               <RiPriceTag3Line size="1.5rem" />
-              {"FREE"}
-            </p>
+              <p>{"FREE"}</p>
+            </div>
           </div>
         </div>
 

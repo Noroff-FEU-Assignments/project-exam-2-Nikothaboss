@@ -17,7 +17,7 @@ export const BookingStyled = styled(motion.form)`
   padding: 1rem;
 
   h2 {
-    color: black;
+    color: ${colors.secondary};
   }
 
   fieldset {
@@ -28,6 +28,10 @@ export const BookingStyled = styled(motion.form)`
     @media${device.mobileL} {
       width: 90%;
     }
+  }
+
+  legend {
+    color: ${colors.primary};
   }
 
   div {

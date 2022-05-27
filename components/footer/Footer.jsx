@@ -3,10 +3,10 @@ import Link from "next/link";
 const Footer = () => {
   return (
     <FooterStyled>
-      <h3>Copyrigths&copy;2022</h3>
-      <strong>Project Exam | Nikolai Reed-Larsen</strong>
+      <p>Project Exam | Nikolai Reed-Larsen</p>
       <div className="site_links">
-        <Link href={"/contact"}>Contact us</Link>
+        <p>Copyrigths&copy;2022</p>
+        <Link href={"/contact"}>Contact Us</Link>
       </div>
     </FooterStyled>
   );

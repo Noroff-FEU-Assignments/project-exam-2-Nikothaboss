@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { colors } from "../../styles/styleVariables";
+import { colors, device, fonts } from "../../styles/styleVariables";
 
 export const FooterStyled = styled.footer`
   display: flex;
@@ -8,11 +8,19 @@ export const FooterStyled = styled.footer`
   padding: 1rem;
   background: ${colors.secondary};
   color: white;
+  font-family: ${fonts.poppins};
+  @media${device.tablet} {
+    flex-direction: column;
+  }
+
+  p {
+    font-weight: 800;
+  }
 
   h3,
   strong,
   div {
-    width: 33%;
+    /* width: 33%; */
     text-align: center;
   }
 
@@ -22,7 +30,11 @@ export const FooterStyled = styled.footer`
 
   .site_links {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
+    width: 56%;
+    @media${device.tablet} {
+      width: 100%;
+    }
   }
 `;

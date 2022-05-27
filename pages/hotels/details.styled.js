@@ -21,6 +21,15 @@ export const DetailsStyled = styled.main`
       justify-content: space-between;
       padding: 0 1rem;
     }
+
+    .price {
+      display: flex;
+      align-items: center;
+
+      p {
+        margin-left: 0.5rem;
+      }
+    }
     /* margin: auto; */
     @media${device.laptop} {
       width: 100%;
