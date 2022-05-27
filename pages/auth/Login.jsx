@@ -7,6 +7,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import nookies from "nookies";
 import { LoginStyled } from "../../styles/login.styled";
+import Head from "next/head";
 
 const Login = ({ loggedIn }) => {
   const {
@@ -47,6 +48,9 @@ const Login = ({ loggedIn }) => {
   };
   return (
     <LoginStyled>
+      <Head>
+        <title>PE2 Nikolai | Login</title>
+      </Head>
       <fieldset>
         <legend>Login</legend>
         <form onSubmit={handleSubmit(onSubmit)}>

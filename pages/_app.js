@@ -4,13 +4,20 @@ import "../styles/globals.css";
 import { AuthProvider } from "../contexts/authContext";
 import { baseUrl } from "../utils/API_CONSTANTS";
 import Header from "../components/header/Header";
+import Footer from "../components/footer/Footer";
+import favicon from "../img/BB-logo.svg";
+import Head from "next/head";
 
 function MyApp({ Component, pageProps, loggedIn, hotels }) {
   return (
     <AuthProvider>
+      <Head>
+        <link rel="icon" href={favicon.src} />
+      </Head>
       <div className="app_container">
         <Header user={loggedIn} searchData={hotels} />
         <Component {...pageProps} />
+        <Footer />
       </div>
     </AuthProvider>
   );

@@ -2,11 +2,15 @@ import { baseUrl } from "../../utils/API_CONSTANTS";
 import { HotelsStyled } from "./hotels.styled";
 import Image from "next/image";
 import Link from "next/link";
-import SearchBar from "../../components/searchBar/searchBar";
+import Head from "next/head";
+import { checkRating } from "../../utils/setRating";
 const Hotels = ({ hotels }) => {
   return (
     <>
       <HotelsStyled>
+        <Head>
+          <title>PE2 Nikolai | Hotels</title>
+        </Head>
         {hotels.map((d) => {
           const data = d.attributes;
           return (
@@ -19,7 +23,11 @@ const Hotels = ({ hotels }) => {
                   height="200"
                   priority={d.id}
                 />
-                <h2>{data.name}</h2>
+                <div className="info">
+                  <h2>{data.name}</h2>
+                  <p>{data.description.substring(0, 200) + "..."}</p>
+                  {checkRating(data.rating)}
+                </div>
               </div>
             </Link>
           );

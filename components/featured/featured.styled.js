@@ -31,6 +31,13 @@ export const CardStyled = styled(MotionDiv)`
   border-radius: 0.1rem;
   overflow: hidden;
 
+  .info {
+    padding: 0.5rem;
+    h2 {
+      font-size: 1.2rem;
+    }
+  }
+
   @media${device.laptop} {
     width: 49%;
     margin-bottom: 1rem;

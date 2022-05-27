@@ -5,13 +5,16 @@ import Carousel from "../components/carousel/Carousel";
 import { HomeStyled } from "../styles/home.styled";
 import { baseUrl } from "../utils/API_CONSTANTS";
 import Featured from "../components/featured/Featured";
+import Head from "next/head";
 
 export default function Home({ hotels, activities }) {
   const [auth, setAuth] = useContext(AuthContext);
 
   return (
     <>
-      {/* <Header /> */}
+      <Head>
+        <title>PE2 Nikolai | Home</title>
+      </Head>
       <HomeStyled>
         <div className="container">
           <Carousel />
@@ -22,16 +25,8 @@ export default function Home({ hotels, activities }) {
             </p>
           </div>
         </div>
-        <Featured
-          request={hotels}
-          test="featuredHotels"
-          title="Popular Hotels"
-        />
-        <Featured
-          request={activities}
-          test="featuredActivities"
-          title="Activities"
-        />
+        <Featured request={hotels} title="Popular Hotels" variant="hotel" />
+        <Featured request={activities} title="Activities" variant="activity" />
       </HomeStyled>
     </>
   );

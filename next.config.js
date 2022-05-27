@@ -6,6 +6,7 @@ const nextConfig = {
       "images.trvl-media.com",
       "a.cdn-hotels.com",
       "www.visitbergen.com",
+      "gifsoutloud.com",
     ],
   },
 };

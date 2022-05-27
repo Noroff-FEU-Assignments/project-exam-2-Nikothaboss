@@ -6,6 +6,7 @@ import { AdminStyled } from "../../styles/admin.styled";
 import CreateForm from "../../components/createForm/CreateForm";
 import Image from "next/image";
 import { MdClose, MdOutlineEdit } from "react-icons/md";
+import Head from "next/head";
 
 const Admin = ({ messages, bookings, hotels }) => {
   const [tab, setTab] = useState(3);
@@ -26,6 +27,9 @@ const Admin = ({ messages, bookings, hotels }) => {
 
   return (
     <AdminStyled>
+      <Head>
+        <title>PE2 Nikolai | Admin</title>
+      </Head>
       <div className="tab_container">
         <div className="tab_selector">
           <div

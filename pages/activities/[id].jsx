@@ -3,11 +3,14 @@ import Image from "next/image";
 import { baseUrl } from "../../utils/API_CONSTANTS";
 import { DetailsStyled } from "../hotels/details.styled";
 import { RiPriceTag3Line } from "react-icons/ri";
+import Head from "next/head";
 
 const Acitvity = ({ data }) => {
-  console.log(data);
   return (
     <DetailsStyled>
+      <Head>
+        <title>PE2 Nikolai | {data.name}</title>
+      </Head>
       <h1>{data.name}</h1>
       <section className="about">
         <div className="img_container">
