@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { device } from "../../styles/styleVariables";
+import { device } from "./styleVariables";
 export const HotelsStyled = styled.main`
   padding: 1rem;
   display: flex;

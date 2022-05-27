@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { boxShadows, colors, device, fonts } from "../../styles/styleVariables";
+import { boxShadows, colors, device, fonts } from "./styleVariables";
 
 export const DetailsStyled = styled.main`
   padding: 1rem;
