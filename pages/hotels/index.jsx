@@ -1,5 +1,5 @@
 import { baseUrl } from "../../utils/API_CONSTANTS";
-import { HotelsStyled } from "./hotels.styled";
+import { HotelsStyled } from "../../styles/hotels.styled";
 import Image from "next/image";
 import Link from "next/link";
 import Head from "next/head";

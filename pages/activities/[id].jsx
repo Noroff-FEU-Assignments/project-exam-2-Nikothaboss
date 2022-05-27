@@ -1,7 +1,7 @@
 import axios from "axios";
 import Image from "next/image";
 import { baseUrl } from "../../utils/API_CONSTANTS";
-import { DetailsStyled } from "../hotels/details.styled";
+import { DetailsStyled } from "../../styles/details.styled";
 import { RiPriceTag3Line } from "react-icons/ri";
 import Head from "next/head";
 

@@ -2,7 +2,7 @@ import axios from "axios";
 import Booking from "../../components/booking";
 import { baseUrl } from "../../utils/API_CONSTANTS";
 import { useState } from "react";
-import { DetailsStyled } from "./details.styled";
+import { DetailsStyled } from "../../styles/details.styled";
 import Image from "next/image";
 import { checkRating } from "../../utils/setRating";
 import { useResize } from "../../hooks/useResize";
