@@ -29,6 +29,9 @@ const ContactForm = () => {
       });
       if (res.status === 200) {
         setSuccess(true);
+        setTimeout(() => {
+          setSuccess(false);
+        }, 3000);
       }
     } catch (err) {
       console.log(err);

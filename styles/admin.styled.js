@@ -112,7 +112,7 @@ export const AdminStyled = styled.main`
     margin-bottom: 1rem;
 
     .delMsg {
-      width: 20%;
+      width: 25%;
       padding: 0.5rem;
       background: ${colors.cta};
       color: white;

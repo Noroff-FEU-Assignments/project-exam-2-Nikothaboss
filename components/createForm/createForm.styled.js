@@ -36,6 +36,10 @@ export const CreateFormStyled = styled.form`
     align-items: center;
   }
 
+  .delBtn {
+    cursor: pointer;
+  }
+
   label,
   legend {
     font-weight: 600;
@@ -56,5 +60,6 @@ export const CreateFormStyled = styled.form`
   button {
     background: ${colors.thirdColor};
     color: white;
+    cursor: pointer;
   }
 `;
