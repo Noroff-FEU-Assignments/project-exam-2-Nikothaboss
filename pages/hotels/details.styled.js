@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { boxShadows, device, fonts } from "../../styles/styleVariables";
+import { boxShadows, colors, device, fonts } from "../../styles/styleVariables";
 
 export const DetailsStyled = styled.main`
   padding: 1rem;
@@ -15,6 +15,12 @@ export const DetailsStyled = styled.main`
   .img_container {
     /* aspect-ratio: 16/9; */
     width: 50%;
+    background: ${colors.secondary};
+    .location {
+      display: flex;
+      justify-content: space-between;
+      padding: 0 1rem;
+    }
     /* margin: auto; */
     @media${device.laptop} {
       width: 100%;

@@ -1,10 +1,15 @@
 import styled from "styled-components";
+import { colors, device } from "../../styles/styleVariables";
 
 export const CreateFormStyled = styled.form`
   display: flex;
   justify-content: center;
+  background: ${colors.secondary};
   fieldset {
-    width: 50%;
+    width: 60%;
+    @media${device.tablet} {
+      width: 90%;
+    }
   }
   div {
     display: flex;

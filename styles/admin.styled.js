@@ -35,7 +35,7 @@ export const AdminStyled = styled.main`
   .booking {
     /* height: 50px; */
     /* border: 1px solid black; */
-    box-shadow: ${boxShadows.card}
+    box-shadow: ${boxShadows.card};
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -45,8 +45,8 @@ export const AdminStyled = styled.main`
     width: 49%;
 
     @media${device.mobileL} {
-        width: 100%;
-      }
+      width: 100%;
+    }
 
     .room {
     }
@@ -83,20 +83,20 @@ export const AdminStyled = styled.main`
   .messages {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between; 
+    justify-content: space-between;
     min-height: 86vh;
 
     .top {
       display: flex;
       justify-content: space-between;
       @media${device.tablet} {
-        flex-direction: column
+        flex-direction: column;
       }
     }
   }
 
   .message {
-    box-shadow: ${boxShadows.card}
+    box-shadow: ${boxShadows.card};
     border: 1px solid black;
     width: 49%;
     padding: 1rem;
@@ -106,70 +106,66 @@ export const AdminStyled = styled.main`
     justify-content: space-between;
     margin-bottom: 1rem;
     @media${device.mobileL} {
-        width: 100%;
+      width: 100%;
     }
-    @media${device.tablet}{
-        max-height: 80%;
+    @media${device.tablet} {
     }
   }
 
   /* Edit */
-  .edit_container{
-
+  .edit_container {
   }
 
-  .delBtn{
-          padding: .5rem;
-          background: red;
-          color: white;
-          margin-top: 1rem;
-          width: 20%;
-          text-align: center;
-          border-radius: .1rem;
-        }
-    
-        .submit_btn{
-          padding: .5rem;
-          margin-top: 1rem;
-          width: 20%;
-        }
+  .delBtn {
+    padding: 0.5rem;
+    background: red;
+    color: white;
+    margin-top: 1rem;
+    width: 20%;
+    text-align: center;
+    border-radius: 0.1rem;
+  }
+
+  .submit_btn {
+    padding: 0.5rem;
+    margin-top: 1rem;
+    width: 20%;
+  }
 
   .hotel {
-      display: flex; 
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 1rem;
-      box-shadow: ${boxShadows.card};
-      
-      position: relative;
-        .img_container{
-            width: 20%;
-        }
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    box-shadow: ${boxShadows.card};
 
-        .overlay{
-          position: absolute;
-          top: 10;
-          right: 0;
-          z-index: 9999999
-        }
-
-        .edit_icon{
-            width: 10%;
-            margin-right: 1rem;
-            cursor: pointer;
-            
-        }
-
-        
-
-      .hotel_img{
-        object-fit: cover;
-        width: 100%;
-      }
-
-      .name, .rating, .featured{
-          width: 20%;
-      }
+    position: relative;
+    .img_container {
+      width: 20%;
     }
 
+    .overlay {
+      position: absolute;
+      top: 10;
+      right: 0;
+      z-index: 9999999;
+    }
+
+    .edit_icon {
+      width: 10%;
+      margin-right: 1rem;
+      cursor: pointer;
+    }
+
+    .hotel_img {
+      object-fit: cover;
+      width: 100%;
+    }
+
+    .name,
+    .rating,
+    .featured {
+      width: 20%;
+    }
+  }
 `;
