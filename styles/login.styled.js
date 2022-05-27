@@ -47,4 +47,8 @@ export const LoginStyled = styled.main`
   h4 {
     color: red;
   }
+
+  span {
+    color: red;
+  }
 `;
