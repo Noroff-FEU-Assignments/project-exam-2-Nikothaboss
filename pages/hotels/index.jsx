@@ -39,7 +39,7 @@ const Hotels = ({ hotels }) => {
 
 export default Hotels;
 
-export const getStaticProps = async () => {
+export const getServerSideProps = async () => {
   const hotelsResponse = await fetch(baseUrl + "hotels");
 
   const hotels = await hotelsResponse.json();

@@ -36,7 +36,7 @@ const Hotels = ({ hotels }) => {
 
 export default Hotels;
 
-export const getStaticProps = async () => {
+export const getServerSideProps = async () => {
   const activitiesResponse = await fetch(baseUrl + "activities");
 
   const activities = await activitiesResponse.json();

@@ -32,7 +32,7 @@ export default function Home({ hotels, activities }) {
   );
 }
 
-export const getStaticProps = async () => {
+export const getServerSideProps = async () => {
   const [hotelsResponse, activitiesResponse] = await Promise.all([
     fetch(baseUrl + "hotels"),
     fetch(baseUrl + "activities"),
