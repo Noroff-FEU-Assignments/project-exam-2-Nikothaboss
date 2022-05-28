@@ -6,10 +6,8 @@ import { createHotelSchema } from "../../utils/yupSchemas";
 import { useState } from "react";
 import axios from "axios";
 import { baseUrl } from "../../utils/API_CONSTANTS";
-import { useRouter } from "next/router";
 
-const CreateForm = ({ type, hotelData }) => {
-  const router = useRouter();
+const CreateForm = ({ type, hotelData, cookie }) => {
   const [rating, setRating] = useState(hotelData?.attributes.rating || 3);
 
   const [success, setSuccess] = useState(false);
@@ -24,18 +22,26 @@ const CreateForm = ({ type, hotelData }) => {
   });
 
   const createHotel = async (formData) => {
-    const res = await axios.post(baseUrl + "hotels", {
-      data: {
-        name: formData.name,
-        description: formData.description,
-        featured: formData.featured,
-        rating: formData.rating,
-        main_img: formData.main_img,
-        second_img: formData.second_img,
-        third_img: formData.third_img,
-        fourth_img: formData.fourth_img,
+    const res = await axios.post(
+      baseUrl + "hotels",
+      {
+        data: {
+          name: formData.name,
+          description: formData.description,
+          featured: formData.featured,
+          rating: formData.rating,
+          main_img: formData.main_img,
+          second_img: formData.second_img,
+          third_img: formData.third_img,
+          fourth_img: formData.fourth_img,
+        },
       },
-    });
+      {
+        headers: {
+          Authorization: `Bearer ${cookie}`,
+        },
+      }
+    );
 
     if (res.status === 200) {
       setSuccess(true);
@@ -49,18 +55,26 @@ const CreateForm = ({ type, hotelData }) => {
   };
 
   const editHotel = async (formData) => {
-    const res = await axios.put(baseUrl + "hotels/" + hotelData.id, {
-      data: {
-        name: formData.name,
-        description: formData.description,
-        featured: formData.featured,
-        rating: formData.rating,
-        main_img: formData.main_img,
-        second_img: formData.second_img,
-        third_img: formData.third_img,
-        fourth_img: formData.fourth_img,
+    const res = await axios.put(
+      baseUrl + "hotels/" + hotelData.id,
+      {
+        data: {
+          name: formData.name,
+          description: formData.description,
+          featured: formData.featured,
+          rating: formData.rating,
+          main_img: formData.main_img,
+          second_img: formData.second_img,
+          third_img: formData.third_img,
+          fourth_img: formData.fourth_img,
+        },
       },
-    });
+      {
+        headers: {
+          Authorization: `Bearer ${cookie}`,
+        },
+      }
+    );
 
     if (res.status === 200) {
       setSuccess(true);
@@ -77,7 +91,11 @@ const CreateForm = ({ type, hotelData }) => {
       "Are you sure you want to delete this hotel?"
     );
     if (doDelete) {
-      const res = await axios.delete(baseUrl + "hotels/" + hotelData.id);
+      const res = await axios.delete(baseUrl + "hotels/" + hotelData.id, {
+        headers: {
+          Authorization: `Bearer ${cookie}`,
+        },
+      });
 
       if (res.status === 200) {
         setSuccess(true);
@@ -85,7 +103,7 @@ const CreateForm = ({ type, hotelData }) => {
         setTimeout(() => {
           setSuccess(false);
           window.location.href = "/auth/Admin";
-        }, 3000);
+        }, 1000);
       }
     }
   };

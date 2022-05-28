@@ -8,7 +8,7 @@ import Image from "next/image";
 import { MdClose, MdOutlineEdit } from "react-icons/md";
 import Head from "next/head";
 
-const Admin = ({ messages, bookings, hotels }) => {
+const Admin = ({ messages, bookings, hotels, cookies }) => {
   const [tab, setTab] = useState(3);
   const [showHotels, setShowHotels] = useState(true);
 
@@ -25,7 +25,11 @@ const Admin = ({ messages, bookings, hotels }) => {
   };
 
   const deleteMessage = async (e) => {
-    const res = await axios.delete(baseUrl + "messages/" + e.target.id);
+    const res = await axios.delete(baseUrl + "messages/" + e.target.id, {
+      headers: {
+        Authorization: `Bearer ${cookies}`,
+      },
+    });
     if (res.status === 200) {
       window.location.href = "/auth/Admin";
     }
@@ -132,7 +136,7 @@ const Admin = ({ messages, bookings, hotels }) => {
         )}
         {tab === 2 && (
           <div className="new_hotel">
-            <CreateForm type={"create"} />
+            <CreateForm type={"create"} cookie={cookies} />
           </div>
         )}
         {tab === 3 && (
@@ -180,7 +184,11 @@ const Admin = ({ messages, bookings, hotels }) => {
             {!showHotels && (
               <>
                 <MdClose onClick={toggleShowHotels} />
-                <CreateForm type="edit" hotelData={currentHotelData} />
+                <CreateForm
+                  type="edit"
+                  hotelData={currentHotelData}
+                  cookie={cookies}
+                />
               </>
             )}
           </div>
@@ -219,11 +227,11 @@ export const getServerSideProps = async (ctx) => {
   const messages = messagesRes.data.data;
   const bookings = bookingsRes.data.data;
   const hotels = hotelsResponse.data.data;
-  console.log(hotels);
 
   return {
     props: {
       loggedIn: loggedIn,
+      cookies: cookies.jwt,
       messages,
       bookings,
       hotels,

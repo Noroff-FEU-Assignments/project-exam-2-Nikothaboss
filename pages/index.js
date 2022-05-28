@@ -1,6 +1,5 @@
 import { useContext } from "react";
 import AuthContext from "../contexts/authContext";
-import Header from "../components/header/Header";
 import Carousel from "../components/carousel/Carousel";
 import { HomeStyled } from "../styles/home.styled";
 import { baseUrl } from "../utils/API_CONSTANTS";
