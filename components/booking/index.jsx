@@ -42,8 +42,7 @@ const Booking = ({ data, closeBooking }) => {
           }, 1000);
         }
       } catch (e) {
-        console.log(e, "fuck meg");
-        console.log(fromDate, toDate, room, adult, children);
+        console.log(e);
       }
     } else {
       setError(true);
