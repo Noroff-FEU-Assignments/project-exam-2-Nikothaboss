@@ -50,7 +50,7 @@ const CreateForm = ({ type, hotelData, cookie }) => {
       setTimeout(() => {
         setSuccess(false);
         window.location.href = "/auth/Admin";
-      }, 3000);
+      }, 1000);
     }
   };
 
@@ -82,7 +82,7 @@ const CreateForm = ({ type, hotelData, cookie }) => {
       setTimeout(() => {
         setSuccess(false);
         window.location.href = "/auth/Admin";
-      }, 3000);
+      }, 1000);
     }
   };
 

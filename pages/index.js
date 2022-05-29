@@ -8,7 +8,6 @@ import Head from "next/head";
 
 export default function Home({ hotels, activities }) {
   const [auth, setAuth] = useContext(AuthContext);
-
   return (
     <>
       <Head>

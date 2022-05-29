@@ -34,6 +34,7 @@ export const AdminStyled = styled.main`
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    min-height: 73vh;
   }
 
   .booking {
@@ -42,7 +43,7 @@ export const AdminStyled = styled.main`
     box-shadow: ${boxShadows.card};
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
     /* padding: 0.5rem; */
     margin-bottom: 1rem;
@@ -74,6 +75,7 @@ export const AdminStyled = styled.main`
     .block {
       border: 1px solid black;
       width: 100%;
+      height: 100%;
       padding: 0 2rem;
 
       @media${device.laptop} {

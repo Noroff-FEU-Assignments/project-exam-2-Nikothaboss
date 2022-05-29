@@ -2,6 +2,7 @@ import { BookingStyled } from "./Booking.styled";
 import { useState, useRef } from "react";
 import axios from "axios";
 import { MdClose } from "react-icons/md";
+import { baseUrl } from "../../utils/API_CONSTANTS";
 
 const Booking = ({ data, closeBooking }) => {
   const formatYmd = (date) => date.toISOString().slice(0, 10);
@@ -13,6 +14,7 @@ const Booking = ({ data, closeBooking }) => {
   const [children, setChildren] = useState(0);
 
   const [error, setError] = useState(false);
+  const [success, setSuccess] = useState(false);
 
   const fromDateRef = useRef();
   const toDateRef = useRef();
@@ -23,16 +25,21 @@ const Booking = ({ data, closeBooking }) => {
     if (fromDateRef.current.value && toDateRef.current.value) {
       setError(false);
       try {
-        const res = await axios.post("/api/bookRoom", {
-          hotel_name: data.name,
-          start_date: fromDate,
-          end_date: toDate,
-          room: room,
-          adult: adult,
-          children: children,
+        const res = await axios.post(baseUrl + "bookings", {
+          data: {
+            hotel_name: data.name,
+            start_date: fromDate,
+            end_date: toDate,
+            room: room,
+            adult: adult,
+            children: children,
+          },
         });
         if (res.status === 200) {
-          console.log("IT WORK, SJEKK UT STRAPI");
+          setSuccess(true);
+          setTimeout(() => {
+            setSuccess(false);
+          }, 1000);
         }
       } catch (e) {
         console.log(e, "fuck meg");
@@ -52,6 +59,7 @@ const Booking = ({ data, closeBooking }) => {
     >
       <fieldset>
         <legend>Book Hotel</legend>
+        {success && <h3>Hotel Booked</h3>}
         <div className="row">
           <h2>{data.name}</h2>
           <MdClose size={"1.5rem"} cursor="pointer" onClick={closeBooking} />
