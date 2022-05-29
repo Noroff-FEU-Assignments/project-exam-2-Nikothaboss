@@ -6,6 +6,7 @@ You need to only choose one and please follow the deliveries carefully.
 ## Innlogging
 
 brukernavn: admin
+email: admin@admin.com
 passord: Pass1234
 
 ## Goal
